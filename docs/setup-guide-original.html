@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente Mídia™ — Guia de Setup · Fase 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0B0B0B; --bg-deep:#080808; --bg-elevated:#141210;
+  --bg-cream:#F4EFE3; --bg-cream-soft:#EDE6D2;
+  --text-light:#EDE7D9; --text-muted:#9B9485; --text-dim:#5F5A50;
+  --text-dark:#171513; --text-dark-muted:#5A544A;
+  --gold:#C9A35A; --gold-deep:#A8853F; --gold-soft:#D9BC7E; --gold-pale:#E8D5A6;
+  --border-dark:#1E1C18; --border-light:#D9D2BF;
+  --signal-success:#7A8B5C; --signal-warn:#B8924A; --signal-info:#5C7B8B;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text-light);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.container{max-width:1080px;margin:0 auto;padding:0 32px;}
+.container-narrow{max-width:780px;margin:0 auto;padding:0 32px;}
+.eyebrow{
+  font-family:'Inter',sans-serif;font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:all .25s;}
+a:hover{border-bottom-color:var(--gold);}
+
+/* TOP NAV */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,11,11,0.94);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-dark);padding:18px 0;
+}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;}
+.nav .logo{display:flex;align-items:baseline;gap:8px;}
+.nav .logo-mark{
+  font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500;
+}
+.nav .logo-mark em{font-style:italic;}
+.nav .logo-mark sup{
+  font-size:9px;color:var(--gold);position:relative;top:-8px;margin-left:2px;
+}
+.nav .badge{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);padding:6px 12px;border:1px solid var(--gold);
+}
+.nav .progress{
+  display:flex;align-items:center;gap:14px;
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);
+}
+.nav .progress-bar{
+  width:120px;height:1px;background:var(--border-dark);position:relative;
+}
+.nav .progress-bar::before{
+  content:'';position:absolute;left:0;top:0;height:100%;width:14%;background:var(--gold);
+}
+
+/* HERO */
+.hero{padding:100px 0 60px;border-bottom:1px solid var(--border-dark);}
+.hero .eyebrow{
+  margin-bottom:32px;display:inline-flex;align-items:center;gap:12px;
+}
+.hero .eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:68px;font-weight:500;line-height:1.05;letter-spacing:-0.015em;
+  margin-bottom:32px;
+}
+.hero h1 em{font-style:italic;color:var(--gold-soft);}
+.hero .lead{
+  font-size:19px;line-height:1.6;color:var(--text-muted);
+  max-width:680px;font-weight:300;
+}
+
+/* OVERVIEW */
+.overview{padding:80px 0;border-bottom:1px solid var(--border-dark);}
+.overview h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:500;line-height:1.1;letter-spacing:-0.01em;
+  margin-bottom:48px;
+}
+.overview h2 em{font-style:italic;color:var(--gold-soft);}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.service-summary{
+  background:var(--bg-elevated);border:1px solid var(--border-dark);
+  padding:32px 28px;position:relative;
+  transition:all .3s;
+}
+.service-summary:hover{border-color:var(--gold);}
+.service-summary .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:var(--gold);margin-bottom:18px;
+}
+.service-summary .ic{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border:1px solid var(--gold);margin-bottom:24px;
+  font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--gold);
+  font-style:italic;
+}
+.service-summary h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:500;margin-bottom:10px;
+}
+.service-summary .role{
+  font-size:13px;color:var(--text-muted);line-height:1.55;margin-bottom:20px;
+}
+.service-summary .meta{
+  display:flex;gap:18px;font-size:11px;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--gold);
+  padding-top:18px;border-top:1px solid var(--border-dark);
+}
+
+/* TIMELINE */
+.timeline-section{padding:80px 0;border-bottom:1px solid var(--border-dark);background:var(--bg-deep);}
+.timeline-section h2{
+  font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;
+  line-height:1.1;letter-spacing:-0.01em;margin-bottom:14px;
+}
+.timeline-section h2 em{font-style:italic;color:var(--gold-soft);}
+.timeline-section .sub{
+  font-size:17px;color:var(--text-muted);font-weight:300;margin-bottom:60px;max-width:640px;
+}
+.timeline{position:relative;padding-left:40px;}
+.timeline::before{
+  content:'';position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--border-dark);
+}
+.timeline-item{position:relative;padding-bottom:48px;}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-item::before{
+  content:'';position:absolute;left:-37px;top:6px;
+  width:8px;height:8px;background:var(--gold);transform:rotate(45deg);
+}
+.timeline-item .when{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:10px;font-weight:500;
+}
+.timeline-item h4{
+  font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:500;margin-bottom:10px;
+}
+.timeline-item p{font-size:15px;color:var(--text-muted);line-height:1.6;}
+
+/* STEP DETAIL */
+.step{padding:100px 0;border-bottom:1px solid var(--border-dark);}
+.step-header{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  margin-bottom:48px;padding-bottom:32px;border-bottom:1px solid var(--border-dark);
+}
+.step-header .left{flex:1;}
+.step-header .num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:84px;font-style:italic;line-height:1;color:var(--gold);margin-bottom:20px;
+}
+.step-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:54px;font-weight:500;line-height:1.05;letter-spacing:-0.01em;margin-bottom:18px;
+}
+.step-header h2 em{font-style:italic;color:var(--gold-soft);}
+.step-header .desc{
+  font-size:18px;color:var(--text-muted);line-height:1.6;font-weight:300;max-width:600px;
+}
+.step-header .right{
+  width:280px;padding:24px;border:1px solid var(--border-dark);background:var(--bg-elevated);
+  margin-left:48px;
+}
+.step-header .right h5{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:18px;font-weight:500;
+}
+.step-header .right dl{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;}
+.step-header .right dt{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);
+}
+.step-header .right dd{font-size:13px;color:var(--text-light);}
+
+.step-section{margin-bottom:48px;}
+.step-section h3{
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;
+  margin-bottom:8px;
+}
+.step-section .label{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--border-dark);
+}
+
+.actions{counter-reset:action;}
+.action{
+  display:grid;grid-template-columns:60px 1fr;gap:24px;
+  padding:24px 0;border-bottom:1px solid var(--border-dark);
+}
+.action:last-child{border-bottom:none;}
+.action .marker{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-style:italic;color:var(--gold);line-height:1;
+  counter-increment:action;
+}
+.action .marker::before{content:counter(action,decimal-leading-zero) ".";}
+.action .body p{font-size:16px;line-height:1.7;color:var(--text-light);}
+.action .body p strong{color:var(--gold-soft);font-weight:500;}
+.action .body code{
+  font-family:'JetBrains Mono',monospace;font-size:13px;
+  background:var(--bg-elevated);padding:2px 8px;border:1px solid var(--border-dark);
+  color:var(--gold);
+}
+.action .body .hint{
+  display:block;font-size:13px;color:var(--text-muted);margin-top:10px;
+  padding-left:14px;border-left:1px solid var(--gold);
+}
+
+/* DELIVER BOX */
+.deliver{
+  background:var(--bg-cream);color:var(--text-dark);
+  padding:48px;margin-top:48px;
+}
+.deliver .eyebrow{color:var(--gold-deep);margin-bottom:18px;display:block;}
+.deliver h4{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;
+  line-height:1.15;margin-bottom:24px;
+}
+.deliver h4 em{font-style:italic;color:var(--gold-deep);}
+.deliver ul{list-style:none;}
+.deliver ul li{
+  padding:14px 0;border-top:1px solid rgba(0,0,0,0.08);
+  display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+  font-size:15px;line-height:1.55;
+}
+.deliver ul li::before{
+  content:'◆';color:var(--gold-deep);font-size:10px;margin-top:4px;
+}
+.deliver ul li strong{color:var(--text-dark);}
+.deliver ul li code{
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold-deep);
+}
+
+/* SECURITY BLOCK */
+.security{
+  padding:80px 0;background:var(--bg-deep);
+}
+.security-card{
+  border:1px solid var(--gold);padding:60px;position:relative;
+  background:var(--bg-elevated);
+}
+.security-card::before{
+  content:'';position:absolute;top:14px;left:14px;right:14px;bottom:14px;
+  border:1px solid var(--gold-deep);opacity:.4;pointer-events:none;
+}
+.security-card .eyebrow{margin-bottom:24px;display:block;position:relative;z-index:1;}
+.security-card h3{
+  font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:500;
+  line-height:1.15;margin-bottom:24px;position:relative;z-index:1;
+}
+.security-card h3 em{font-style:italic;color:var(--gold-soft);}
+.security-card p{
+  font-size:16px;line-height:1.7;color:var(--text-muted);margin-bottom:18px;
+  position:relative;z-index:1;
+}
+.security-card p:last-child{margin-bottom:0;}
+
+/* FOOTER */
+.footer{padding:80px 0 40px;text-align:center;}
+.footer .wordmark{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;
+  margin-bottom:18px;
+}
+.footer .wordmark em{font-style:italic;}
+.footer .wordmark sup{font-size:12px;color:var(--gold);position:relative;top:-12px;}
+.footer .meta{font-size:12px;color:var(--text-muted);letter-spacing:0.1em;line-height:1.7;}
+
+@media(max-width:960px){
+  .hero h1{font-size:44px;}
+  .overview h2,.timeline-section h2{font-size:32px;}
+  .services-grid{grid-template-columns:1fr;}
+  .step-header{flex-direction:column;}
+  .step-header .right{width:100%;margin-left:0;margin-top:32px;}
+  .step-header .num{font-size:60px;}
+  .step-header h2{font-size:36px;}
+  .nav .progress{display:none;}
+  .deliver{padding:32px;}
+  .security-card{padding:32px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="logo">
+      <span class="logo-mark serif">Cliente <em>Mídia</em><sup>TM</sup></span>
+      <span class="badge">Setup · Fase 1</span>
+    </div>
+    <div class="progress">
+      <span>Progresso geral</span>
+      <span class="progress-bar"></span>
+      <span style="color:var(--gold);">14%</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Fase 1 · Infraestrutura técnica</span>
+    <h1 class="serif">Seis serviços. Duas horas. <em>Um portal pronto pra subir</em>.</h1>
+    <p class="lead">Este guia te leva, passo a passo, pela criação de tudo que o portal precisa para funcionar. Você não precisa entender de programação. Só precisa seguir a ordem. Ao final de cada passo, há uma lista exata do que me enviar — copie, cole no chat e siga em frente.</p>
+  </div>
+</section>
+
+<!-- OVERVIEW: 6 SERVICES -->
+<section class="overview">
+  <div class="container">
+    <h2 class="serif">Os seis serviços que <em>compõem o portal</em>.</h2>
+    <div class="services-grid">
+
+      <div class="service-summary">
+        <div class="num serif"><em>01.</em></div>
+        <div class="ic serif"><em>G</em></div>
+        <h3 class="serif">GitHub</h3>
+        <p class="role">Onde o código do site mora. Indispensável para a Vercel se conectar e fazer deploy automático.</p>
+        <div class="meta"><span>Grátis</span><span>~5 min</span></div>
+      </div>
+
+      <div class="service-summary">
+        <div class="num serif"><em>02.</em></div>
+        <div class="ic serif"><em>V</em></div>
+        <h3 class="serif">Vercel</h3>
+        <p class="role">Hospedagem do portal. Toda vez que algo mudar, ela publica no ar automaticamente, com performance global.</p>
+        <div class="meta"><span>Plano Hobby</span><span>~10 min</span></div>
+      </div>
+
+      <div class="service-summary">
+        <div class="num serif"><em>03.</em></div>
+        <div class="ic serif"><em>S</em></div>
+        <h3 class="serif">Sanity</h3>
+        <p class="role">Painel visual onde você escreve, edita e publica os artigos sem tocar em código. Roda no navegador.</p>
+        <div class="meta"><span>Free tier</span><span>~10 min</span></div>
+      </div>
+
+      <div class="service-summary">
+        <div class="num serif"><em>04.</em></div>
+        <div class="ic serif"><em>Sb</em></div>
+        <h3 class="serif">Supabase</h3>
+        <p class="role">Banco de dados dos leads. Guarda os e-mails de quem baixa o relatório e quem assina a newsletter.</p>
+        <div class="meta"><span>Free tier</span><span>~10 min</span></div>
+      </div>
+
+      <div class="service-summary">
+        <div class="num serif"><em>05.</em></div>
+        <div class="ic serif"><em>R</em></div>
+        <h3 class="serif">Resend</h3>
+        <p class="role">Envio dos e-mails de confirmação, entrega do relatório e disparos editoriais. 3.000 e-mails/mês grátis.</p>
+        <div class="meta"><span>Free tier</span><span>~8 min</span></div>
+      </div>
+
+      <div class="service-summary">
+        <div class="num serif"><em>06.</em></div>
+        <div class="ic serif"><em>C</em></div>
+        <h3 class="serif">Cloudinary</h3>
+        <p class="role">Otimização automática das imagens dos artigos. Reduz o peso em 80% sem perder qualidade.</p>
+        <div class="meta"><span>Free tier</span><span>~6 min</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <h2 class="serif">Como vamos <em>trabalhar juntos</em>.</h2>
+    <p class="sub">A Fase 1 acontece em três tempos. Você executa o primeiro. Eu executo o segundo e o terceiro. No final, o portal está no ar como esqueleto pronto para receber os artigos.</p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="when">Tempo 1 · Você · Hoje</div>
+        <h4 class="serif">Criação das contas e coleta de credenciais</h4>
+        <p>Você segue os 6 passos deste guia e me envia, em uma mensagem só, as chaves de API e tokens que cada serviço fornece. Tempo estimado: 1h30 a 2h.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">Tempo 2 · Eu · 2 a 3 dias</div>
+        <h4 class="serif">Construção do projeto Next.js e integrações</h4>
+        <p>Recebo as credenciais, monto o projeto inteiro no Next.js 14, conecto Vercel, Supabase, Sanity, Resend e Cloudinary, faço o primeiro deploy. O portal sobe vazio, mas funcional.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">Tempo 3 · Nós · 1 dia</div>
+        <h4 class="serif">Configuração do domínio clientemidia.com.br</h4>
+        <p>Te oriento a apontar o DNS no seu registrador (Registro.br) para a Vercel. Em 15 minutos, o portal está acessível pelo domínio definitivo. Encerramos a Fase 1 e partimos para a construção das páginas.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STEP 1: GITHUB -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">i.</div>
+        <h2 class="serif">GitHub <em>— a casa do código</em>.</h2>
+        <p class="desc">Plataforma onde todo o código-fonte do portal vai morar. Você não vai mexer nela depois — é só uma estante. A Vercel lê o que está aqui e publica no ar automaticamente.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>5 min</dd>
+          <dt>Conta</dt><dd>Pessoal</dd>
+          <dt>Acesso</dt><dd>Apenas você</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://github.com/signup" target="_blank">github.com/signup</a> e crie uma conta com o e-mail <strong>grupodigital163@gmail.com</strong>.</p>
+            <span class="hint">Sugestão de nome de usuário: <code>juliano-clientemidia</code> ou <code>viralizeluxo</code> — algo profissional e fácil de lembrar.</span>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Verifique o e-mail (o GitHub manda um código). Pronto, conta criada. Não precisa configurar mais nada.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Vá em <strong>Settings</strong> → <strong>Developer settings</strong> → <strong>Personal access tokens</strong> → <strong>Tokens (classic)</strong> → <strong>Generate new token (classic)</strong>.</p>
+            <span class="hint">Nome do token: <code>clientemidia-vercel</code>. Em "Expiration" deixe "No expiration". Marque os scopes: <code>repo</code>, <code>workflow</code>, <code>admin:repo_hook</code>. Clique em <strong>Generate token</strong> e copie o código gerado (começa com <code>ghp_...</code>).</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 1</span>
+      <h4 class="serif">Cole <em>esses dois itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>Seu nome de usuário do GitHub.</strong> Exemplo: <code>juliano-clientemidia</code></div></li>
+        <li><div><strong>O Personal Access Token</strong> que você acabou de gerar. Começa com <code>ghp_</code>.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2: VERCEL -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">ii.</div>
+        <h2 class="serif">Vercel <em>— a hospedagem</em>.</h2>
+        <p class="desc">Onde o portal vai rodar 24 horas por dia. Cada vez que eu mexer no código, ela publica em segundos. Velocidade global, HTTPS automático, monitoramento incluso.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>10 min</dd>
+          <dt>Plano</dt><dd>Hobby</dd>
+          <dt>Limite</dt><dd>100GB/mês</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://vercel.com/signup" target="_blank">vercel.com/signup</a> e clique em <strong>Continue with GitHub</strong>.</p>
+            <span class="hint">Use a conta GitHub que você acabou de criar. A integração entre os dois é automática.</span>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Confirme o e-mail, selecione o plano <strong>Hobby</strong> (gratuito) quando for perguntado. Pule qualquer pergunta de equipe ou pagamento.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Clique no seu avatar no canto superior direito → <strong>Account Settings</strong> → <strong>Tokens</strong> (no menu lateral) → <strong>Create</strong>.</p>
+            <span class="hint">Nome: <code>clientemidia-deploy</code>. Scope: <code>Full Account</code>. Expiration: <code>No expiration</code>. Copie o token gerado.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 2</span>
+      <h4 class="serif">Cole <em>esses dois itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>O token da Vercel</strong> que você acabou de gerar.</div></li>
+        <li><div><strong>O nome da sua conta Vercel</strong> (aparece no canto superior esquerdo do painel).</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3: SANITY -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">iii.</div>
+        <h2 class="serif">Sanity <em>— o estúdio editorial</em>.</h2>
+        <p class="desc">É aqui que você vai trabalhar todos os dias depois que o portal estiver no ar. Painel visual, simples como um editor de texto, onde você escreve, edita, revisa, agenda e publica artigos. Sem mexer em código.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>10 min</dd>
+          <dt>Plano</dt><dd>Free tier</dd>
+          <dt>Limite</dt><dd>10 mil docs</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://www.sanity.io/login" target="_blank">sanity.io/login</a> e crie conta com <strong>Sign up with Google</strong> usando o e-mail <strong>grupodigital163@gmail.com</strong>.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Quando ele perguntar "What brings you to Sanity?", escolha <strong>Building a website or blog</strong>. Pule qualquer outro questionário.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>No painel principal (<a href="https://www.sanity.io/manage" target="_blank">sanity.io/manage</a>), clique em <strong>Create new project</strong>. Nome: <code>cliente-midia</code>. Dataset: <code>production</code>. Plano: <code>Free</code>.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Dentro do projeto criado, vá em <strong>API</strong> → <strong>Tokens</strong> → <strong>Add API token</strong>. Nome: <code>clientemidia-write</code>. Permissions: <strong>Editor</strong>. Copie o token.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 3</span>
+      <h4 class="serif">Cole <em>esses três itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>Project ID</strong> (aparece na aba "API" do projeto, formato <code>abc12345</code>).</div></li>
+        <li><div><strong>Dataset name</strong>: <code>production</code> (geralmente é esse).</div></li>
+        <li><div><strong>API Token</strong> que você acabou de criar.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 4: SUPABASE -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">iv.</div>
+        <h2 class="serif">Supabase <em>— o cofre dos leads</em>.</h2>
+        <p class="desc">Banco de dados que guarda os e-mails de quem baixa o relatório, assina a newsletter ou interage com o portal. Você nunca vai precisar abrir — eu configuro e cuido. É um cofre invisível.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>10 min</dd>
+          <dt>Plano</dt><dd>Free tier</dd>
+          <dt>Limite</dt><dd>500MB</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://supabase.com/dashboard/sign-up" target="_blank">supabase.com/dashboard/sign-up</a> e crie conta com <strong>Continue with GitHub</strong>.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Clique em <strong>New Project</strong>. Organization: deixe a padrão. Project name: <code>cliente-midia</code>. Database password: <strong>gere uma senha forte e salve em um lugar seguro</strong> (vou precisar dela depois). Region: <code>South America (São Paulo)</code>. Pricing Plan: <code>Free</code>.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Espere ~2 minutos enquanto o projeto inicializa. Quando carregar, vá em <strong>Project Settings</strong> (ícone de engrenagem no menu lateral) → <strong>API</strong>.</p>
+            <span class="hint">Você vai ver duas chaves importantes: <code>anon public</code> e <code>service_role secret</code>. Vou precisar das duas.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 4</span>
+      <h4 class="serif">Cole <em>esses quatro itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>Project URL</strong> (formato <code>https://xxxxx.supabase.co</code>).</div></li>
+        <li><div><strong>anon public key</strong> (chave longa que começa com <code>eyJ...</code>).</div></li>
+        <li><div><strong>service_role key</strong> (a chave secreta).</div></li>
+        <li><div><strong>Database password</strong> que você criou.</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 5: RESEND -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">v.</div>
+        <h2 class="serif">Resend <em>— o carteiro</em>.</h2>
+        <p class="desc">Serviço que entrega os e-mails do portal. Quando alguém baixa o relatório, é o Resend que envia o PDF. Quando alguém assina a newsletter, é ele que dispara a confirmação. Profissional, com altíssima entregabilidade.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>8 min</dd>
+          <dt>Plano</dt><dd>Free tier</dd>
+          <dt>Limite</dt><dd>3 mil/mês</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://resend.com/signup" target="_blank">resend.com/signup</a>, crie conta com Google ou e-mail. Confirme.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>No painel, vá em <strong>API Keys</strong> → <strong>Create API Key</strong>. Nome: <code>clientemidia-prod</code>. Permission: <code>Full access</code>. Copie a chave (começa com <code>re_</code>).</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Vá em <strong>Domains</strong> → <strong>Add Domain</strong>. Digite <code>clientemidia.com.br</code> e clique em <strong>Add</strong>. Ele vai gerar 4 registros DNS — <strong>tire um print da tela inteira</strong>. Vou precisar desses registros para te orientar a configurar no Registro.br.</p>
+            <span class="hint">Não se preocupe em configurar agora. Só salva o print. Faremos isso junto na fase do domínio.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 5</span>
+      <h4 class="serif">Cole <em>esses dois itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>API Key</strong> que você acabou de gerar (começa com <code>re_</code>).</div></li>
+        <li><div><strong>Print da tela de DNS</strong> que o Resend gerou ao adicionar o domínio (anexa no chat).</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 6: CLOUDINARY -->
+<section class="step">
+  <div class="container">
+    <div class="step-header">
+      <div class="left">
+        <div class="num serif">vi.</div>
+        <h2 class="serif">Cloudinary <em>— o alfaiate das imagens</em>.</h2>
+        <p class="desc">Otimização automática das fotos dos artigos. Pega uma imagem de 5MB e entrega 200KB sem perder qualidade. Reduz o tempo de carregamento e melhora o SEO. Você nunca vai abrir — só configurar uma vez.</p>
+      </div>
+      <div class="right">
+        <h5>Resumo executivo</h5>
+        <dl>
+          <dt>Custo</dt><dd>Grátis</dd>
+          <dt>Tempo</dt><dd>6 min</dd>
+          <dt>Plano</dt><dd>Free tier</dd>
+          <dt>Limite</dt><dd>25 créditos</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="step-section">
+      <h3 class="serif">O que fazer</h3>
+      <div class="label">Passo a passo</div>
+      <div class="actions">
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Acesse <a href="https://cloudinary.com/users/register/free" target="_blank">cloudinary.com/users/register/free</a> e crie conta com Google ou e-mail.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Quando perguntarem o "Cloud name", coloque <code>clientemidia</code>. Isso vira parte da URL das suas imagens.</p>
+          </div>
+        </div>
+        <div class="action">
+          <div class="marker serif"></div>
+          <div class="body">
+            <p>Pule qualquer questionário. No painel, vá em <strong>Dashboard</strong>. No topo da página tem um bloco chamado <strong>Account Details</strong> com três informações: Cloud name, API Key e API Secret.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deliver">
+      <span class="eyebrow">O que me enviar ao final do passo 6</span>
+      <h4 class="serif">Cole <em>esses três itens</em> no chat.</h4>
+      <ul>
+        <li><div><strong>Cloud name</strong> (deve ser <code>clientemidia</code> se você seguiu a sugestão).</div></li>
+        <li><div><strong>API Key</strong> (sequência de números).</div></li>
+        <li><div><strong>API Secret</strong> (clique em "Reveal" para ver).</div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SECURITY -->
+<section class="security">
+  <div class="container">
+    <div class="security-card">
+      <span class="eyebrow">Nota de segurança</span>
+      <h3 class="serif">Como me enviar <em>as credenciais com segurança</em>.</h3>
+      <p>As chaves e tokens que você vai gerar são equivalentes a senhas — quem tiver acesso a elas pode operar as contas. Por isso, três cuidados:</p>
+      <p><strong style="color:var(--gold);">Primeiro:</strong> envie tudo de uma vez, em uma única mensagem aqui no chat, formatada em blocos claros (eu te mando um template antes). Não envie por outros canais (WhatsApp, e-mail, etc.).</p>
+      <p><strong style="color:var(--gold);">Segundo:</strong> assim que eu confirmar que recebi e configurei, você pode (se quiser) rotacionar as chaves — gerar novas e desativar as antigas. Te oriento como fazer.</p>
+      <p><strong style="color:var(--gold);">Terceiro:</strong> nunca compartilhe essas credenciais com mais ninguém. Se algum dia precisar trocar, é só ir nos painéis e regenerar — leva 30 segundos por serviço.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <div class="container">
+    <div class="wordmark serif">Cliente <em>Mídia</em><sup>TM</sup></div>
+    <div class="meta">Guia de Setup · Fase 1 · Edição inaugural<br>Documento operacional. Atualizado a cada serviço integrado.</div>
+  </div>
+</section>
+
+</body>
+</html>

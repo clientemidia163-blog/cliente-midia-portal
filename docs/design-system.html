@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente Mídia™ — Sistema de Design v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0B0B0B;
+  --bg-deep:#080808;
+  --bg-elevated:#141210;
+  --bg-cream:#F4EFE3;
+  --bg-cream-soft:#EDE6D2;
+  --text-light:#EDE7D9;
+  --text-muted:#9B9485;
+  --text-dim:#5F5A50;
+  --text-dark:#171513;
+  --text-dark-muted:#5A544A;
+  --gold:#C9A35A;
+  --gold-deep:#A8853F;
+  --gold-soft:#D9BC7E;
+  --gold-pale:#E8D5A6;
+  --border-dark:#1E1C18;
+  --border-light:#D9D2BF;
+  --signal-red:#B4513F;
+  --signal-green:#7A8B5C;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-light);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+.container{max-width:1240px;margin:0 auto;padding:0 32px;}
+.eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:11px;font-weight:500;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* TOP NAV */
+.ds-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(11,11,11,0.92);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-dark);
+  padding:18px 0;
+}
+.ds-nav-inner{display:flex;justify-content:space-between;align-items:center;}
+.ds-nav .logo{display:flex;align-items:baseline;gap:6px;}
+.ds-nav .logo-mark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;letter-spacing:0.02em;
+}
+.ds-nav .logo-mark em{font-style:italic;}
+.ds-nav .logo-mark sup{
+  font-size:9px;color:var(--gold);
+  letter-spacing:0;margin-left:2px;
+  position:relative;top:-8px;
+}
+.ds-nav .version{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.ds-nav .menu{display:flex;gap:32px;list-style:none;}
+.ds-nav .menu a{
+  font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-light);text-decoration:none;
+  transition:color .25s ease;
+}
+.ds-nav .menu a:hover{color:var(--gold);}
+
+/* HERO */
+.ds-hero{
+  padding:120px 0 80px;
+  border-bottom:1px solid var(--border-dark);
+}
+.ds-hero .eyebrow{margin-bottom:32px;display:inline-flex;align-items:center;gap:12px;}
+.ds-hero .eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.ds-hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:76px;line-height:1.05;font-weight:500;
+  letter-spacing:-0.015em;margin-bottom:32px;
+}
+.ds-hero h1 em{font-style:italic;color:var(--gold-soft);font-weight:400;}
+.ds-hero .lead{
+  font-size:19px;line-height:1.6;color:var(--text-muted);
+  max-width:680px;font-weight:300;
+}
+
+/* SECTION */
+.ds-section{
+  padding:100px 0;
+  border-bottom:1px solid var(--border-dark);
+}
+.ds-section.cream{
+  background:var(--bg-cream);
+  color:var(--text-dark);
+}
+.ds-section.cream .eyebrow{color:var(--gold-deep);}
+.section-header{margin-bottom:80px;}
+.section-header .number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;
+  color:var(--gold);margin-bottom:24px;
+}
+.section-header h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:54px;font-weight:500;line-height:1.05;
+  letter-spacing:-0.01em;margin-bottom:24px;
+}
+.section-header h2 em{font-style:italic;color:var(--gold-soft);font-weight:400;}
+.ds-section.cream .section-header h2 em{color:var(--gold-deep);}
+.section-header p{
+  font-size:18px;line-height:1.65;
+  color:var(--text-muted);
+  max-width:680px;font-weight:300;
+}
+.ds-section.cream .section-header p{color:var(--text-dark-muted);}
+
+/* SUBSECTION */
+.subsection{margin-bottom:80px;}
+.subsection:last-child{margin-bottom:0;}
+.subsection-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:500;letter-spacing:-0.005em;
+  margin-bottom:8px;
+}
+.subsection-meta{
+  font-size:12px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:40px;
+  padding-bottom:24px;border-bottom:1px solid var(--border-dark);
+}
+.cream .subsection-meta{
+  color:var(--gold-deep);
+  border-bottom-color:var(--border-light);
+}
+
+/* ─── LOGO SHOWCASE ─── */
+.logo-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:32px;
+  margin-bottom:40px;
+}
+.logo-tile{
+  background:var(--bg-deep);
+  border:1px solid var(--border-dark);
+  padding:64px 40px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:260px;
+  position:relative;
+}
+.logo-tile.cream{background:var(--bg-cream);border-color:var(--border-light);}
+.logo-tile .label{
+  position:absolute;top:16px;left:16px;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+.logo-tile.cream .label{color:var(--gold-deep);}
+
+/* Primary wordmark */
+.wordmark-primary{
+  font-family:'Cormorant Garamond',serif;
+  font-size:54px;font-weight:500;letter-spacing:0.005em;
+  display:flex;align-items:baseline;gap:8px;
+  color:var(--text-light);
+}
+.wordmark-primary em{font-style:italic;font-weight:500;}
+.wordmark-primary sup{
+  font-size:14px;color:var(--gold);
+  letter-spacing:0;position:relative;top:-22px;
+  font-style:normal;
+}
+.cream .wordmark-primary{color:var(--text-dark);}
+
+/* Stacked wordmark */
+.wordmark-stacked{
+  font-family:'Cormorant Garamond',serif;
+  text-align:center;line-height:0.95;
+  color:var(--text-light);
+}
+.cream .wordmark-stacked{color:var(--text-dark);}
+.wordmark-stacked .cliente{
+  font-size:42px;font-weight:500;letter-spacing:0.04em;
+  display:block;
+}
+.wordmark-stacked .rule{
+  display:block;height:1px;background:var(--gold);
+  width:120px;margin:18px auto;
+}
+.wordmark-stacked .midia{
+  font-size:42px;font-style:italic;font-weight:500;letter-spacing:0.02em;
+  display:inline-block;
+}
+.wordmark-stacked .tm{
+  font-size:11px;color:var(--gold);
+  position:relative;top:-22px;margin-left:4px;
+  font-style:normal;
+}
+
+/* Monogram */
+.monogram{
+  font-family:'Cormorant Garamond',serif;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  width:140px;height:140px;
+  border:1px solid var(--gold);
+}
+.monogram::before{
+  content:'';position:absolute;inset:8px;border:1px solid var(--gold-deep);opacity:.5;
+}
+.monogram-letters{
+  font-size:72px;font-weight:500;letter-spacing:-0.04em;
+  color:var(--text-light);
+  display:flex;align-items:baseline;
+}
+.monogram-letters .c{margin-right:-8px;}
+.monogram-letters .m{font-style:italic;color:var(--gold-soft);}
+.cream .monogram-letters{color:var(--text-dark);}
+.cream .monogram-letters .m{color:var(--gold-deep);}
+
+/* Editorial marker */
+.marker-row{
+  display:flex;align-items:center;gap:24px;justify-content:center;
+}
+.marker{display:inline-flex;align-items:center;gap:14px;color:var(--gold);}
+.marker .line{width:48px;height:1px;background:var(--gold);}
+.marker .diamond{
+  width:8px;height:8px;background:var(--gold);
+  transform:rotate(45deg);
+}
+.marker .dot{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+}
+.marker .rule{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:18px;color:var(--gold);
+}
+
+/* Logo specs */
+.spec-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-top:32px;
+}
+.spec-card{
+  background:var(--bg-elevated);
+  border:1px solid var(--border-dark);
+  padding:24px;
+}
+.cream .spec-card{
+  background:var(--bg-cream-soft);
+  border-color:var(--border-light);
+}
+.spec-card h4{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:14px;
+}
+.cream .spec-card h4{color:var(--gold-deep);}
+.spec-card p{
+  font-size:14px;line-height:1.6;color:var(--text-muted);
+}
+.cream .spec-card p{color:var(--text-dark-muted);}
+
+/* ─── TYPOGRAPHY ─── */
+.type-row{
+  display:grid;
+  grid-template-columns:140px 1fr;
+  gap:32px;
+  align-items:baseline;
+  padding:32px 0;
+  border-bottom:1px solid var(--border-dark);
+}
+.type-row:last-child{border-bottom:none;}
+.type-spec{
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+.type-spec span{display:block;color:var(--text-muted);margin-top:6px;letter-spacing:0.05em;}
+.type-sample{color:var(--text-light);}
+.type-sample.size-display{
+  font-family:'Cormorant Garamond',serif;
+  font-size:86px;font-weight:500;line-height:1;letter-spacing:-0.02em;
+}
+.type-sample.size-h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:56px;font-weight:500;line-height:1.1;letter-spacing:-0.015em;
+}
+.type-sample.size-h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:500;line-height:1.15;letter-spacing:-0.01em;
+}
+.type-sample.size-h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:500;line-height:1.2;
+}
+.type-sample.size-lead{
+  font-size:21px;line-height:1.55;font-weight:300;color:var(--text-muted);
+}
+.type-sample.size-body{
+  font-size:17px;line-height:1.75;color:var(--text-light);
+}
+.type-sample.size-caption{
+  font-size:13px;line-height:1.5;color:var(--text-muted);
+}
+.type-sample.size-eyebrow{
+  font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);
+}
+.type-sample em{font-style:italic;color:var(--gold-soft);}
+
+.font-stack{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:32px;
+  margin-bottom:60px;
+}
+.font-card{
+  background:var(--bg-deep);
+  border:1px solid var(--border-dark);
+  padding:48px 40px;
+  position:relative;
+}
+.font-card .name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:500;
+  margin-bottom:8px;
+}
+.font-card .name em{font-style:italic;}
+.font-card .role{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:32px;display:block;
+}
+.font-card .specimen{
+  font-size:96px;line-height:1;letter-spacing:-0.02em;
+  margin-bottom:24px;color:var(--text-light);
+}
+.font-card.sans .specimen{
+  font-family:'Inter',sans-serif;font-weight:400;
+}
+.font-card.serif .specimen{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+}
+.font-card.serif .specimen em{font-style:italic;}
+.font-card .weights{
+  font-size:13px;color:var(--text-muted);
+  letter-spacing:0.05em;
+  display:flex;gap:16px;flex-wrap:wrap;
+}
+.font-card .weights span{
+  padding:4px 12px;border:1px solid var(--border-dark);
+}
+
+/* ─── COLOR PALETTE ─── */
+.palette-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin-bottom:60px;
+}
+.color-tile{
+  background:var(--bg-deep);
+  border:1px solid var(--border-dark);
+  overflow:hidden;
+}
+.color-swatch{
+  height:140px;
+  position:relative;
+}
+.color-swatch .role{
+  position:absolute;top:14px;left:14px;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  font-weight:500;
+}
+.color-info{padding:20px;}
+.color-info .name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-weight:500;margin-bottom:4px;
+}
+.color-info .hex{
+  font-family:'Inter',sans-serif;
+  font-size:12px;color:var(--text-muted);
+  letter-spacing:0.05em;
+}
+.color-info .usage{
+  font-size:12px;color:var(--text-dim);
+  margin-top:10px;line-height:1.5;
+}
+
+.palette-section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:500;font-style:italic;
+  color:var(--gold);margin-bottom:24px;
+}
+
+/* ─── COMPONENTS ─── */
+.component-block{margin-bottom:48px;}
+.component-block .heading{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:24px;
+  padding-bottom:14px;border-bottom:1px solid var(--border-dark);
+}
+.cream .component-block .heading{border-bottom-color:var(--border-light);}
+.component-block .heading h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;
+}
+.component-block .heading .tag{
+  font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--gold);
+}
+.component-canvas{
+  background:var(--bg-elevated);
+  border:1px solid var(--border-dark);
+  padding:48px;
+  display:flex;align-items:center;justify-content:center;gap:24px;
+  flex-wrap:wrap;
+}
+.cream .component-canvas{background:#EBE3D0;border-color:var(--border-light);}
+
+/* Buttons (same as homepage) */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 28px;
+  font-family:'Inter',sans-serif;
+  font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:500;
+  transition:all .3s ease;cursor:pointer;border:none;
+  text-decoration:none;
+}
+.btn-primary{background:var(--gold);color:var(--bg-dark);}
+.btn-primary:hover{background:var(--gold-deep);}
+.btn-ghost{background:transparent;color:var(--text-light);border:1px solid var(--border-dark);}
+.cream .btn-ghost{color:var(--text-dark);border-color:var(--border-light);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-text{
+  color:var(--gold);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+  font-weight:500;display:inline-flex;align-items:center;gap:8px;
+  border-bottom:1px solid transparent;padding-bottom:2px;
+  background:none;
+}
+.btn-text:hover{border-bottom-color:var(--gold);}
+
+/* Tag */
+.tag-sample{
+  display:inline-block;font-size:11px;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--gold);font-weight:500;
+  padding-bottom:8px;border-bottom:1px solid var(--gold);
+}
+
+/* Pull quote */
+.pull-quote{
+  max-width:600px;text-align:center;
+}
+.pull-quote .q{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-style:italic;line-height:1.25;
+  margin-bottom:24px;
+}
+.cream .pull-quote .q{color:var(--text-dark);}
+.pull-quote .q .accent{color:var(--gold);font-style:normal;font-weight:500;}
+.cream .pull-quote .q .accent{color:var(--gold-deep);}
+.pull-quote .cite{
+  font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.cream .pull-quote .cite{color:var(--text-dark-muted);}
+
+/* Article card mini */
+.article-card-mini{
+  max-width:340px;
+}
+.article-card-mini .img{
+  aspect-ratio:4/3;background:linear-gradient(135deg,#1a1815 0%,#2a2520 100%);
+  margin-bottom:20px;position:relative;
+}
+.article-card-mini .img::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' opacity='0.05'><circle cx='50' cy='50' r='1' fill='%23C9A35A'/></svg>");
+  background-size:20px 20px;
+}
+.article-card-mini .img-frame{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;border:1px solid var(--gold);opacity:.6;
+}
+.article-card-mini .meta{
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:10px;
+}
+.article-card-mini .title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:500;line-height:1.2;color:var(--text-light);
+}
+.cream .article-card-mini .title{color:var(--text-dark);}
+
+/* Form */
+.form-sample{width:100%;max-width:500px;}
+.form-sample .row{
+  display:flex;gap:12px;
+  border-bottom:1px solid var(--text-light);
+  padding-bottom:12px;
+}
+.cream .form-sample .row{border-bottom-color:var(--text-dark);}
+.form-sample input{
+  flex:1;background:transparent;border:none;outline:none;
+  font-family:'Inter',sans-serif;font-size:16px;color:var(--text-light);
+  padding:8px 0;
+}
+.cream .form-sample input{color:var(--text-dark);}
+.form-sample input::placeholder{color:var(--text-muted);}
+.cream .form-sample input::placeholder{color:var(--text-dark-muted);}
+.form-sample button{
+  background:transparent;border:none;cursor:pointer;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  font-weight:500;color:var(--gold);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.cream .form-sample button{color:var(--gold-deep);}
+
+/* ─── PRINCIPLES ─── */
+.principles-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:48px;
+}
+.principle-card{
+  padding:48px 0;
+  border-top:1px solid var(--border-dark);
+}
+.principle-card .number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;color:var(--gold);
+  margin-bottom:24px;
+}
+.principle-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:500;line-height:1.15;
+  margin-bottom:14px;
+}
+.principle-card h3 em{font-style:italic;color:var(--gold-soft);font-weight:400;}
+.principle-card p{
+  font-size:16px;line-height:1.7;
+  color:var(--text-muted);
+}
+
+/* ─── IMAGE DIRECTION ─── */
+.imagery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-bottom:32px;
+}
+.imagery-tile{
+  aspect-ratio:3/4;
+  position:relative;overflow:hidden;
+  border:1px solid var(--border-dark);
+}
+.imagery-tile.cinema{
+  background:
+    linear-gradient(180deg,rgba(11,11,11,0.5) 0%,rgba(11,11,11,0.85) 100%),
+    radial-gradient(circle at 30% 40%, #2a2520 0%, #1a1612 50%, #0B0B0B 100%);
+}
+.imagery-tile.editorial{
+  background:
+    linear-gradient(170deg,rgba(244,239,227,0.3) 0%,rgba(11,11,11,0.6) 100%),
+    radial-gradient(circle at 60% 50%, #5a4a35 0%, #2a2018 60%, #0B0B0B 100%);
+}
+.imagery-tile.product{
+  background:
+    radial-gradient(circle at 50% 50%, #d9bc7e 0%, #a88540 30%, #2a2018 80%);
+}
+.imagery-tile .frame{
+  position:absolute;inset:24px;border:1px solid rgba(201,163,90,0.4);
+}
+.imagery-tile .label{
+  position:absolute;bottom:24px;left:24px;
+  font-size:10px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+.imagery-rules{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.rule-item{
+  border-left:1px solid var(--gold);
+  padding:8px 0 8px 24px;
+}
+.rule-item .label{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;font-weight:500;
+}
+.rule-item p{
+  font-size:14px;line-height:1.65;color:var(--text-muted);
+}
+
+/* SECTION MARKER */
+.section-marker{
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  padding:24px 0;
+}
+.section-marker .line{height:1px;width:80px;background:var(--gold);}
+.section-marker .icon{
+  width:8px;height:8px;background:var(--gold);transform:rotate(45deg);
+}
+.section-marker .text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:16px;color:var(--gold);
+  letter-spacing:0.02em;
+}
+
+@media(max-width:960px){
+  .ds-hero h1{font-size:48px;}
+  .section-header h2{font-size:36px;}
+  .logo-grid,.font-stack,.principles-grid{grid-template-columns:1fr;}
+  .palette-grid,.imagery-grid,.imagery-rules,.spec-grid{grid-template-columns:1fr 1fr;}
+  .type-row{grid-template-columns:1fr;gap:8px;}
+  .type-sample.size-display{font-size:48px;}
+  .type-sample.size-h1{font-size:36px;}
+  .ds-nav .menu{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="ds-nav">
+  <div class="container ds-nav-inner">
+    <div class="logo">
+      <span class="logo-mark">Cliente <em>Mídia</em><sup>TM</sup></span>
+      <span class="version">Sistema de Design · v1.0</span>
+    </div>
+    <ul class="menu">
+      <li><a href="#identidade">Identidade</a></li>
+      <li><a href="#tipografia">Tipografia</a></li>
+      <li><a href="#paleta">Paleta</a></li>
+      <li><a href="#componentes">Componentes</a></li>
+      <li><a href="#imagens">Imagens</a></li>
+      <li><a href="#principios">Princípios</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="ds-hero">
+  <div class="container">
+    <span class="eyebrow">Sistema de Design · Edição inaugural · 2026</span>
+    <h1 class="serif">A gramática visual da <em>nova categoria</em>.</h1>
+    <p class="lead">Este documento define o vocabulário visual do portal Cliente Mídia™. Tipografia, paleta, componentes e princípios editoriais que governam cada artigo, cada página, cada peça de comunicação. Luxo na superfície. Clareza no parágrafo. Autoridade na ausência de barulho.</p>
+  </div>
+</section>
+
+<!-- ─── 1. IDENTIDADE ─── -->
+<section class="ds-section" id="identidade">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>i.</em></div>
+      <h2 class="serif">Identidade <em>verbal e visual</em>.</h2>
+      <p>A marca Cliente Mídia™ se manifesta em três formas: o logotipo principal, o monograma e o marcador editorial. Cada uma serve uma função específica de hierarquia e contexto.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title serif">Logotipo principal</h3>
+      <div class="subsection-meta">Wordmark · Aplicação canônica</div>
+
+      <div class="logo-grid">
+        <div class="logo-tile">
+          <span class="label">Sobre fundo escuro</span>
+          <div class="wordmark-primary">Cliente <em>Mídia</em><sup>TM</sup></div>
+        </div>
+        <div class="logo-tile cream">
+          <span class="label">Sobre fundo creme</span>
+          <div class="wordmark-primary">Cliente <em>Mídia</em><sup>TM</sup></div>
+        </div>
+      </div>
+
+      <div class="spec-grid">
+        <div class="spec-card">
+          <h4>Tipografia</h4>
+          <p>Cormorant Garamond, peso 500. A palavra "Mídia" em itálico imprime ritmo editorial e enfatiza o substantivo central da categoria.</p>
+        </div>
+        <div class="spec-card">
+          <h4>Tratamento ™</h4>
+          <p>O símbolo de trademark é construtivo da marca. Sempre em ouro, em superscript, levemente menor — sinaliza propriedade categórica sem ser ostensivo.</p>
+        </div>
+        <div class="spec-card">
+          <h4>Espaço de respiro</h4>
+          <p>Margem mínima ao redor do wordmark equivalente à altura da letra "C". Nunca aplique sobre fotos sem máscara de contraste.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title serif">Logotipo empilhado</h3>
+      <div class="subsection-meta">Versão centralizada · Para selos, capas, redes sociais</div>
+
+      <div class="logo-grid">
+        <div class="logo-tile">
+          <span class="label">Selo editorial</span>
+          <div class="wordmark-stacked">
+            <span class="cliente">CLIENTE</span>
+            <span class="rule"></span>
+            <span class="midia">Mídia<span class="tm">TM</span></span>
+          </div>
+        </div>
+        <div class="logo-tile cream">
+          <span class="label">Sobre creme</span>
+          <div class="wordmark-stacked">
+            <span class="cliente">CLIENTE</span>
+            <span class="rule"></span>
+            <span class="midia">Mídia<span class="tm">TM</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title serif">Monograma</h3>
+      <div class="subsection-meta">Favicon · Avatar · Aplicação em micro escala</div>
+
+      <div class="logo-grid">
+        <div class="logo-tile">
+          <span class="label">Monograma escuro</span>
+          <div class="monogram">
+            <div class="monogram-letters">
+              <span class="c serif">C</span>
+              <span class="m serif">M</span>
+            </div>
+          </div>
+        </div>
+        <div class="logo-tile cream">
+          <span class="label">Monograma creme</span>
+          <div class="monogram">
+            <div class="monogram-letters">
+              <span class="c serif">C</span>
+              <span class="m serif">M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title serif">Marcador editorial</h3>
+      <div class="subsection-meta">Divisor de seção · Pontuação visual · Rítmica</div>
+
+      <div class="logo-tile" style="min-height:200px;">
+        <span class="label">Aplicação típica</span>
+        <div class="marker-row">
+          <div class="marker">
+            <span class="line"></span>
+            <span class="diamond"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+        <div style="margin-top:32px;">
+          <div class="marker">
+            <span class="rule serif">·</span>
+            <span class="line" style="width:60px;"></span>
+            <span class="dot"></span>
+            <span class="line" style="width:60px;"></span>
+            <span class="rule serif">·</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. TIPOGRAFIA ─── -->
+<section class="ds-section" id="tipografia">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>ii.</em></div>
+      <h2 class="serif">Tipografia <em>editorial</em>.</h2>
+      <p>Duas famílias. Uma para o pensamento — Cormorant Garamond, serifa contemporânea de inspiração veneziana, com personalidade sem ostentação. Outra para a respiração — Inter, sem serifa, neutra, legível em qualquer escala. Juntas, evocam a publicação séria que conversa, não a tese que palestra.</p>
+    </div>
+
+    <div class="font-stack">
+      <div class="font-card serif">
+        <span class="role">Display · títulos · destaques</span>
+        <div class="specimen">Aa <em>Mm</em></div>
+        <div class="name serif">Cormorant <em>Garamond</em></div>
+        <div class="weights">
+          <span>Light · 300</span>
+          <span>Regular · 400</span>
+          <span>Medium · 500</span>
+          <span>Italic · 400i</span>
+        </div>
+      </div>
+      <div class="font-card sans">
+        <span class="role">Corpo · interface · funcional</span>
+        <div class="specimen">Aa</div>
+        <div class="name serif">Inter</div>
+        <div class="weights">
+          <span>Light · 300</span>
+          <span>Regular · 400</span>
+          <span>Medium · 500</span>
+          <span>Semibold · 600</span>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="subsection-title serif">Escala tipográfica</h3>
+    <div class="subsection-meta">Da capa ao rodapé · Hierarquia em 7 níveis</div>
+
+    <div class="type-row">
+      <div class="type-spec">Display<span>86px · Cormorant</span></div>
+      <div class="type-sample size-display">O <em>alcance</em></div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">H1<span>56px · Cormorant 500</span></div>
+      <div class="type-sample size-h1">Sua loja investe em alcance.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">H2<span>40px · Cormorant 500</span></div>
+      <div class="type-sample size-h2">O fim do alcance alugado.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">H3<span>28px · Cormorant 500</span></div>
+      <div class="type-sample size-h3">O que existe do outro lado</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">Lead<span>21px · Inter 300</span></div>
+      <div class="type-sample size-lead">A entrada do artigo. O parágrafo que segura o leitor antes do mergulho. Ritmo solto, ar generoso.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">Body<span>17px · Inter 400</span></div>
+      <div class="type-sample size-body">O texto corrido. Comprimento ideal de linha entre 65 e 75 caracteres. Entrelinha de 1.75 para leitura confortável em qualquer ambiente. Sem justificação — sempre alinhado à esquerda.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">Caption<span>13px · Inter 400</span></div>
+      <div class="type-sample size-caption">Legendas, créditos, metainformação. Usado abaixo de imagens, em rodapés, em dados secundários.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-spec">Eyebrow<span>11px · Inter 500 · 0.22em</span></div>
+      <div class="type-sample size-eyebrow">Categoria · Edição · Maio 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3. PALETA ─── -->
+<section class="ds-section" id="paleta">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>iii.</em></div>
+      <h2 class="serif">Paleta <em>cromática</em>.</h2>
+      <p>Três famílias. Pretos profundos para o palco editorial. Cremes quentes para o respiro de papel. Ouros foscos para o acento de luxo. Nada brilhante. Nada saturado. A elegância está no que se contém.</p>
+    </div>
+
+    <div class="palette-section-title">Pretos · estrutura</div>
+    <div class="palette-grid">
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#0B0B0B;"><span class="role" style="color:var(--gold);">Primário</span></div>
+        <div class="color-info">
+          <div class="name serif">Obsidiana</div>
+          <div class="hex">#0B0B0B</div>
+          <div class="usage">Fundo principal de todas as páginas escuras.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#080808;"><span class="role" style="color:var(--gold);">Profundo</span></div>
+        <div class="color-info">
+          <div class="name serif">Tinta</div>
+          <div class="hex">#080808</div>
+          <div class="usage">Sessões aprofundadas. Footer. Headers fixos.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#141210;"><span class="role" style="color:var(--gold);">Elevado</span></div>
+        <div class="color-info">
+          <div class="name serif">Carvão</div>
+          <div class="hex">#141210</div>
+          <div class="usage">Cards. Superfícies elevadas. Componentes destacados.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#1E1C18;"><span class="role" style="color:var(--gold);">Linha</span></div>
+        <div class="color-info">
+          <div class="name serif">Bronze noturno</div>
+          <div class="hex">#1E1C18</div>
+          <div class="usage">Bordas, divisores, rules sutis.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-title">Cremes · respiro</div>
+    <div class="palette-grid">
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#F4EFE3;"><span class="role" style="color:var(--gold-deep);">Primário claro</span></div>
+        <div class="color-info">
+          <div class="name serif">Pergaminho</div>
+          <div class="hex">#F4EFE3</div>
+          <div class="usage">Blocos de respiro. Páginas de relatório. Citações em destaque.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#EDE6D2;"><span class="role" style="color:var(--gold-deep);">Profundo</span></div>
+        <div class="color-info">
+          <div class="name serif">Marfim</div>
+          <div class="hex">#EDE6D2</div>
+          <div class="usage">Cards sobre creme. Variação tonal interna.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#EDE7D9;"><span class="role" style="color:var(--text-dark);">Texto claro</span></div>
+        <div class="color-info">
+          <div class="name serif">Linho</div>
+          <div class="hex">#EDE7D9</div>
+          <div class="usage">Cor de texto principal sobre fundos escuros.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#9B9485;"><span class="role" style="color:#171513;">Texto muted</span></div>
+        <div class="color-info">
+          <div class="name serif">Sépia</div>
+          <div class="hex">#9B9485</div>
+          <div class="usage">Subtítulos, captions, metainformação.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="palette-section-title">Ouros · acento</div>
+    <div class="palette-grid">
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#C9A35A;"><span class="role" style="color:#0B0B0B;">Primário</span></div>
+        <div class="color-info">
+          <div class="name serif">Ouro fosco</div>
+          <div class="hex">#C9A35A</div>
+          <div class="usage">Acentos editoriais. Eyebrows. Detalhes finos.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#A8853F;"><span class="role" style="color:#F4EFE3;">Hover</span></div>
+        <div class="color-info">
+          <div class="name serif">Bronze antigo</div>
+          <div class="hex">#A8853F</div>
+          <div class="usage">Estado hover do ouro. Variação mais escura.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#D9BC7E;"><span class="role" style="color:#0B0B0B;">Highlight</span></div>
+        <div class="color-info">
+          <div class="name serif">Ouro suave</div>
+          <div class="hex">#D9BC7E</div>
+          <div class="usage">Itálicos em destaque. Brilhos sutis.</div>
+        </div>
+      </div>
+      <div class="color-tile">
+        <div class="color-swatch" style="background:#E8D5A6;"><span class="role" style="color:#171513;">Pálido</span></div>
+        <div class="color-info">
+          <div class="name serif">Champanhe</div>
+          <div class="hex">#E8D5A6</div>
+          <div class="usage">Hover sobre escuro. Variação clara para fundos creme.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 4. COMPONENTES ─── -->
+<section class="ds-section" id="componentes">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>iv.</em></div>
+      <h2 class="serif">Componentes <em>editoriais</em>.</h2>
+      <p>O alfabeto da interface. Cada componente foi desenhado para sumir — para sair do caminho do conteúdo. A interação acontece sem que o leitor perceba que está interagindo.</p>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Botões</h4>
+        <span class="tag">3 variações</span>
+      </div>
+      <div class="component-canvas">
+        <a href="#" class="btn btn-primary">Ler o manifesto →</a>
+        <a href="#" class="btn btn-ghost">Ver todos os artigos</a>
+        <a href="#" class="btn-text">Baixar o relatório →</a>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Tags & Eyebrows</h4>
+        <span class="tag">Hierarquia de seções</span>
+      </div>
+      <div class="component-canvas" style="gap:48px;">
+        <span class="eyebrow">Manifesto · Maio 2026</span>
+        <span class="tag-sample">Diagnóstico</span>
+        <span class="tag-sample">Categoria</span>
+        <span class="tag-sample">Pesquisa</span>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Citação editorial</h4>
+        <span class="tag">Pull quote</span>
+      </div>
+      <div class="component-canvas">
+        <div class="pull-quote">
+          <p class="q serif">"O maior ativo do varejo premium não está nos anúncios. Está nas <span class="accent">pessoas que já te escolheram</span>."</p>
+          <div class="cite">— Manifesto Cliente Mídia™</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Card de artigo</h4>
+        <span class="tag">Variação compacta</span>
+      </div>
+      <div class="component-canvas">
+        <div class="article-card-mini">
+          <div class="img"><div class="img-frame"></div></div>
+          <div class="meta">Diagnóstico · 12 min</div>
+          <h4 class="title serif">O fim do alcance alugado.</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Formulário editorial</h4>
+        <span class="tag">Captura de e-mail</span>
+      </div>
+      <div class="component-canvas">
+        <div class="form-sample">
+          <div class="row">
+            <input type="email" placeholder="seu e-mail profissional">
+            <button>Receber →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="component-block">
+      <div class="heading">
+        <h4 class="serif">Marcador de seção</h4>
+        <span class="tag">Divisor editorial</span>
+      </div>
+      <div class="component-canvas">
+        <div class="section-marker">
+          <span class="line"></span>
+          <span class="icon"></span>
+          <span class="text serif">continua</span>
+          <span class="icon"></span>
+          <span class="line"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. IMAGENS ─── -->
+<section class="ds-section" id="imagens">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>v.</em></div>
+      <h2 class="serif">Direção <em>fotográfica</em>.</h2>
+      <p>Toda imagem que aparece no portal segue três princípios não negociáveis: tem peso cinematográfico, tem baixa saturação e respeita a paleta de pretos, cremes e ouros. Foto de banco com cara de banco está banida. Imagem gerada por IA precisa parecer fotografia editorial — não ilustração.</p>
+    </div>
+
+    <div class="imagery-grid">
+      <div class="imagery-tile cinema">
+        <div class="frame"></div>
+        <span class="label">Cinemático · luz baixa</span>
+      </div>
+      <div class="imagery-tile editorial">
+        <div class="frame"></div>
+        <span class="label">Editorial · provador</span>
+      </div>
+      <div class="imagery-tile product">
+        <div class="frame"></div>
+        <span class="label">Produto · stillife dourado</span>
+      </div>
+    </div>
+
+    <div class="imagery-rules">
+      <div class="rule-item">
+        <div class="label">Luz</div>
+        <p>Sempre direcional, lateral, com áreas de sombra profunda. Nunca flat. Nunca chapado. Sensação de "câmera grande" e filme analógico.</p>
+      </div>
+      <div class="rule-item">
+        <div class="label">Cor</div>
+        <p>Dessaturação calibrada — entre 70% e 85% da saturação original. Tons quentes preservados. Azuis empurrados para o cinza. Sem cores fluorescentes.</p>
+      </div>
+      <div class="rule-item">
+        <div class="label">Composição</div>
+        <p>Respiro generoso. Sujeito raramente no centro. Pontos de fuga horizontais. Linhas arquitetônicas explícitas. Ar editorial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 6. PRINCÍPIOS ─── -->
+<section class="ds-section cream" id="principios">
+  <div class="container">
+    <div class="section-header">
+      <div class="number serif"><em>vi.</em></div>
+      <h2 class="serif">Princípios <em>editoriais</em>.</h2>
+      <p>Quando houver dúvida sobre uma decisão de design ou de conteúdo, volte a estes seis princípios. Eles são a constituição do projeto.</p>
+    </div>
+
+    <div class="principles-grid">
+      <div class="principle-card">
+        <div class="number serif"><em>01.</em></div>
+        <h3 class="serif">Luxo, mas <em>acessível</em>.</h3>
+        <p>A embalagem é de revista premium. A linguagem é de conversa entre profissionais. Lojista classe A entende e se reconhece. Lojista de outra classe entende e aprende. Ninguém precisa de tradutor.</p>
+      </div>
+      <div class="principle-card">
+        <div class="number serif"><em>02.</em></div>
+        <h3 class="serif">Autoridade pela <em>restrição</em>.</h3>
+        <p>Quem precisa gritar não tem autoridade. Cada espaço em branco, cada tipografia contida, cada cor não usada — tudo isso comunica solidez. O barulho fica para a concorrência.</p>
+      </div>
+      <div class="principle-card">
+        <div class="number serif"><em>03.</em></div>
+        <h3 class="serif">Dados como <em>argumento</em>.</h3>
+        <p>Números reais, com fonte citada, no corpo da prosa. Não como decoração. Não como infográfico vazio. O dado existe para sustentar uma afirmação — nunca para enfeitar.</p>
+      </div>
+      <div class="principle-card">
+        <div class="number serif"><em>04.</em></div>
+        <h3 class="serif">Frase curta. <em>Ritmo claro</em>.</h3>
+        <p>Período longo só quando justificado. Parágrafo de quatro linhas, no máximo. Frase isolada vale uma seção. O ritmo do texto é parte do design — tanto quanto a tipografia.</p>
+      </div>
+      <div class="principle-card">
+        <div class="number serif"><em>05.</em></div>
+        <h3 class="serif">A categoria <em>primeiro</em>.</h3>
+        <p>Em qualquer artigo, qualquer relatório, qualquer comunicação: a categoria Cliente Mídia™ é o sujeito principal. A Viralize Luxo aparece como infraestrutura — nunca como protagonista. Centro de autoridade, não folder de venda.</p>
+      </div>
+      <div class="principle-card">
+        <div class="number serif"><em>06.</em></div>
+        <h3 class="serif">Nada <em>brilhante</em>.</h3>
+        <p>Sem gradientes saturados. Sem botões que pulsam. Sem ouro reluzente. O luxo verdadeiro é fosco, contido, denso. Se um elemento parece "design de site moderno", está errado. Volta para o forno.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section style="padding:80px 0;text-align:center;border-top:1px solid var(--border-dark);">
+  <div class="container">
+    <div class="wordmark-primary" style="justify-content:center;margin-bottom:20px;">Cliente <em>Mídia</em><sup>TM</sup></div>
+    <p style="font-size:13px;color:var(--text-muted);letter-spacing:0.1em;">Sistema de Design v1.0 · Edição inaugural · Maio 2026<br>Documento vivo. Atualizado a cada decisão arquitetada com Juliano.</p>
+  </div>
+</section>
+
+</body>
+</html>

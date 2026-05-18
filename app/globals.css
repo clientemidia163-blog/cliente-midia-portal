@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-cormorant: "Cormorant Garamond", Georgia, serif;
+    --font-inter: "Inter", system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: #0B0B0B;
+    color: #EDE7D9;
+    font-family: var(--font-inter);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a {
+    transition: opacity 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  ::selection {
+    background: #C9A35A;
+    color: #0B0B0B;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-eyebrow text-gold;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2.5 bg-gold px-7 py-4 text-[12px] font-medium uppercase tracking-wider text-ink transition-colors hover:bg-gold-deep;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2.5 border border-line-dark bg-transparent px-7 py-4 text-[12px] font-medium uppercase tracking-wider text-cream-warm transition-colors hover:border-gold hover:text-gold;
+  }
+
+  .btn-text {
+    @apply inline-flex items-center gap-2 border-b border-transparent pb-0.5 text-[12px] font-medium uppercase tracking-wider text-gold hover:border-gold;
+  }
+
+  .tag-pill {
+    @apply inline-block border-b border-gold pb-2 text-[11px] font-medium uppercase tracking-[0.2em] text-gold;
+  }
+}

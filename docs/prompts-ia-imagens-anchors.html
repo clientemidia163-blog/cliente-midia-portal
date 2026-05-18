@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompts de Imagem · Cliente Mídia™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0B0B0B; --bg-elevated:#141210;
+  --text-light:#EDE7D9; --text-muted:#9B9485; --text-dim:#5F5A50;
+  --gold:#C9A35A; --gold-deep:#A8853F; --gold-soft:#D9BC7E;
+  --border-dark:#1E1C18;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text-light);
+  font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.container{max-width:980px;margin:0 auto;padding:0 32px;}
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid transparent;transition:all .25s;}
+a:hover{border-bottom-color:var(--gold);}
+
+.hero{padding:80px 0 60px;border-bottom:1px solid var(--border-dark);}
+.hero .eyebrow{margin-bottom:24px;display:inline-flex;align-items:center;gap:12px;}
+.hero .eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:60px;line-height:1.05;font-weight:500;letter-spacing:-0.015em;
+  margin-bottom:28px;
+}
+.hero h1 em{font-style:italic;color:var(--gold-soft);}
+.hero .lead{
+  font-size:18px;line-height:1.6;color:var(--text-muted);
+  max-width:680px;font-weight:300;
+}
+
+.section{padding:60px 0;border-bottom:1px solid var(--border-dark);}
+.section h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:500;line-height:1.1;letter-spacing:-0.01em;
+  margin-bottom:24px;
+}
+.section .intro{
+  font-size:16px;line-height:1.65;color:var(--text-muted);
+  max-width:680px;margin-bottom:32px;
+}
+
+.tools-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;
+}
+.tool-card{
+  background:var(--bg-elevated);border:1px solid var(--border-dark);
+  padding:20px;
+}
+.tool-card .name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;font-weight:500;margin-bottom:6px;
+}
+.tool-card .meta{font-size:12px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.tool-card .desc{font-size:13px;color:var(--text-muted);line-height:1.55;}
+
+.prompt-card{
+  background:var(--bg-elevated);border:1px solid var(--border-dark);
+  padding:40px;margin-bottom:24px;
+  position:relative;
+}
+.prompt-card .num{
+  position:absolute;top:32px;right:32px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-style:italic;color:var(--gold);
+  line-height:1;opacity:0.6;
+}
+.prompt-card .tag{
+  display:inline-block;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;padding-bottom:8px;border-bottom:1px solid var(--gold);
+  margin-bottom:20px;
+}
+.prompt-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:500;line-height:1.15;letter-spacing:-0.005em;
+  margin-bottom:8px;max-width:680px;
+}
+.prompt-card .subtitle{
+  font-size:15px;color:var(--text-muted);line-height:1.55;
+  margin-bottom:32px;font-style:italic;
+}
+.prompt-card .label{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);margin-top:24px;margin-bottom:10px;
+}
+.prompt-card .prompt-text{
+  background:var(--bg-dark);border:1px solid var(--border-dark);
+  padding:18px;font-family:'JetBrains Mono',monospace;
+  font-size:12.5px;line-height:1.7;color:var(--text-light);
+  border-radius:0;overflow-wrap:break-word;
+}
+.prompt-card .negative{border-left:2px solid #B4513F;}
+.prompt-card .alt{
+  font-size:13px;color:var(--text-dim);line-height:1.55;margin-top:14px;
+}
+
+.workflow{
+  background:var(--bg-elevated);border:1px solid var(--gold);
+  padding:36px;
+}
+.workflow h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:500;margin-bottom:18px;
+}
+.workflow ol{padding-left:24px;}
+.workflow ol li{
+  margin-bottom:14px;font-size:15px;line-height:1.65;color:var(--text-light);
+}
+.workflow ol li strong{color:var(--gold-soft);font-weight:500;}
+.workflow code{
+  font-family:'JetBrains Mono',monospace;font-size:12.5px;
+  background:var(--bg-dark);padding:2px 6px;border:1px solid var(--border-dark);
+  color:var(--gold);
+}
+
+.footer{padding:60px 0 40px;text-align:center;}
+.footer .wordmark{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:500;margin-bottom:12px;
+}
+.footer .wordmark em{font-style:italic;}
+.footer .wordmark sup{font-size:10px;color:var(--gold);position:relative;top:-10px;}
+.footer .meta{font-size:11px;color:var(--text-muted);letter-spacing:0.08em;line-height:1.6;}
+
+@media(max-width:760px){
+  .hero h1{font-size:42px;}
+  .section h2{font-size:28px;}
+  .tools-grid{grid-template-columns:1fr;}
+  .prompt-card{padding:28px;}
+  .prompt-card .num{font-size:36px;top:20px;right:20px;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Fase 4 · Imagens editoriais</span>
+    <h1 class="serif">Prompts para os 4 <em>artigos âncora</em>.</h1>
+    <p class="lead">Quatro prompts otimizados para gerar imagens fotográficas editoriais cinematográficas. Cada um foi calibrado para a estética premium do portal — baixa saturação, paleta preto/creme/ouro, luz lateral direcional, sensação de filme analógico. Cole no Midjourney, Flux ou Ideogram. Faça upload no Sanity Studio. O portal usa automaticamente.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="serif">Ferramentas recomendadas</h2>
+    <p class="intro">Qualquer uma das três funciona — escolha a que você já usa ou tem assinatura. Os prompts foram escritos no formato Midjourney v6.1 (que serve como referência canônica para fotografia editorial), mas funcionam diretamente nas outras duas com ajustes mínimos.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="meta">Recomendado</div>
+        <div class="name serif">Midjourney v6.1</div>
+        <div class="desc">Melhor para fotografia editorial premium. Plano básico US$ 10/mês. Cole o prompt no Discord ou web. Use <span class="mono">--ar 16:10 --style raw --v 6.1</span></div>
+      </div>
+      <div class="tool-card">
+        <div class="meta">Alternativa</div>
+        <div class="name serif">Flux Schnell</div>
+        <div class="desc">Via Replicate ou Together AI. Cerca de US$ 0.003 por imagem. Rápido e gratuito até certo volume. Use o mesmo prompt, ignore parâmetros Midjourney.</div>
+      </div>
+      <div class="tool-card">
+        <div class="meta">Alternativa</div>
+        <div class="name serif">Ideogram 2.0</div>
+        <div class="desc">Excelente em tipografia editorial e fotorrealismo. Plano básico US$ 8/mês. Funciona bem com prompts curtos e descritivos.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="serif">Os quatro prompts</h2>
+    <p class="intro">Um para cada artigo âncora. Cole exatamente como está, ajustando apenas o aspect ratio se sua ferramenta usar formato diferente (todos foram pensados para 16:10, ideal para hero image no portal).</p>
+  </div>
+
+  <div class="container">
+    <!-- Prompt 1 -->
+    <div class="prompt-card">
+      <div class="num serif"><em>01</em></div>
+      <div class="tag">Diagnóstico</div>
+      <h3 class="serif">O fim do alcance alugado.</h3>
+      <p class="subtitle">Tom: tenso, estrutural, frio. Conceito: vazio onde antes havia presença.</p>
+      <div class="label">Prompt principal</div>
+      <div class="prompt-text">Editorial fashion photograph, abandoned luxury boutique storefront at dusk in São Paulo, gold neon "FOR RENT" sign reflected in dark plate glass, marble floor inside empty showroom, soft golden side light, deep shadows, low saturation, muted tones of black ivory and antique gold, shot on Kodak Portra 400 with Leica 50mm f/1.4, shallow depth of field, cinematic editorial aesthetic, Monocle magazine style, no people, architectural composition, subtle film grain --ar 16:10 --style raw --v 6.1</div>
+      <div class="alt">Variação alternativa: troque "FOR RENT sign" por "empty mannequins behind glass" ou "broken display case with single luxury handbag inside" — mesma atmosfera, narrativa diferente.</div>
+    </div>
+
+    <!-- Prompt 2 -->
+    <div class="prompt-card">
+      <div class="num serif"><em>02</em></div>
+      <div class="tag">Categoria</div>
+      <h3 class="serif">Cliente Mídia™ — a definição oficial.</h3>
+      <p class="subtitle">Tom: monumental, definitional, contido. Conceito: nomear é demarcar.</p>
+      <div class="label">Prompt principal</div>
+      <div class="prompt-text">Editorial portrait photograph, sophisticated Brazilian woman in her late thirties in a luxury São Paulo boutique, holding her smartphone displaying her own elegant outfit photo, warm golden hour light through floor-to-ceiling window, marble walls and dark walnut shelving in background, low saturation cream and gold and deep brown palette, shot on Hasselblad medium format with 80mm f/2.8, soft natural lighting, fashion editorial composition, Business of Fashion magazine style, subtle film grain, no logos visible --ar 16:10 --style raw --v 6.1</div>
+      <div class="alt">Variação: substitua a personagem por "elegant hands holding a smartphone with luxury fashion content" — close-up sem rosto, mantém o conceito mais abstrato e foco no gesto.</div>
+    </div>
+
+    <!-- Prompt 3 -->
+    <div class="prompt-card">
+      <div class="num serif"><em>03</em></div>
+      <div class="tag">Pesquisa</div>
+      <h3 class="serif">Por que sua melhor cliente nunca foi seu anúncio.</h3>
+      <p class="subtitle">Tom: íntimo, humano, real. Conceito: duas pessoas, uma recomendação.</p>
+      <div class="label">Prompt principal</div>
+      <div class="prompt-text">Editorial documentary photograph, two elegant Brazilian women in their thirties having intimate conversation at a marble café table in São Paulo Jardins neighborhood, one showing the other a phone screen with a fashion outfit, both wearing premium minimalist fashion, soft natural daylight from large window, antique gold and cream interior, low saturation muted tones, shot on Leica Q3 with 28mm summilux lens at f/2.0, candid moment frozen, shallow depth of field, fashion magazine documentary aesthetic, Kinfolk style, subtle film grain, warmth --ar 16:10 --style raw --v 6.1</div>
+      <div class="alt">Variação: substitua "café" por "boutique fitting room" — cena dentro de uma loja, mesma intimidade e gesto de compartilhamento.</div>
+    </div>
+
+    <!-- Prompt 4 -->
+    <div class="prompt-card">
+      <div class="num serif"><em>04</em></div>
+      <div class="tag">Movimento</div>
+      <h3 class="serif">A nova infraestrutura do varejo premium.</h3>
+      <p class="subtitle">Tom: arquitetural, futurista, contido. Conceito: o palco está pronto.</p>
+      <div class="label">Prompt principal</div>
+      <div class="prompt-text">Editorial architecture photograph, interior of a brand new high-end Brazilian fashion boutique before opening, polished marble floor reflecting subtle gold ceiling lights, dark walnut wood paneling, empty bronze clothing rails arranged geometrically, warm golden side lighting creating dramatic shadows, low saturation palette of obsidian black cream and antique gold, cinematic perspective looking down a long gallery, no people, sense of anticipation and possibility, shot on Sony A7R IV with 24mm f/1.4 lens, architectural digest editorial style, magazine cover quality, subtle film grain, depth and atmosphere --ar 16:10 --style raw --v 6.1</div>
+      <div class="alt">Variação: adicione "with single mannequin in the distance wearing a luxury garment" para introduzir foco humano, ou troque "before opening" por "at golden hour" para variar luz.</div>
+    </div>
+
+    <!-- Negative prompt universal -->
+    <div class="prompt-card">
+      <div class="tag">Universal · Para qualquer ferramenta</div>
+      <h3 class="serif">Negativos — evitar sempre.</h3>
+      <p class="subtitle">Adicione esses termos como negative prompt em Stable Diffusion / Flux, ou use <span class="mono">--no</span> no Midjourney.</p>
+      <div class="label">Negativos (excluir da geração)</div>
+      <div class="prompt-text negative">cartoon, illustration, painting, drawing, anime, low quality, blurry, overexposed, saturated colors, neon, fluorescent, plastic skin, smooth airbrush, stock photo aesthetic, generic, watermark, text overlay, signature, logo, branded clothing visible, distorted faces, bad anatomy</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="serif">Workflow — do prompt ao portal</h2>
+    <p class="intro">Cinco passos. Cada artigo leva entre 5 e 10 minutos depois que você gerar a imagem.</p>
+
+    <div class="workflow">
+      <h3 class="serif">Os 5 passos</h3>
+      <ol>
+        <li><strong>Gere a imagem</strong> na sua ferramenta de IA usando um dos prompts acima. Gere 4 variações por prompt e escolha a melhor.</li>
+        <li><strong>Baixe em alta resolução</strong> — pelo menos 1800px de largura. Salve com nome descritivo: <code>alcance-alugado-hero.jpg</code>, <code>definicao-oficial-hero.jpg</code>, etc.</li>
+        <li><strong>Abra o Sanity Studio</strong> em <a href="https://clientemidia.com.br/studio" target="_blank">clientemidia.com.br/studio</a>, faça login, vá em Artigos.</li>
+        <li><strong>Abra o artigo correspondente</strong> (os drafts já estão criados), procure o campo <code>Imagem hero</code>, faça upload da foto. Adicione um alt-text descritivo no campo Alt.</li>
+        <li><strong>Salve e publique</strong>. O portal puxa automaticamente — a página do artigo passa a usar a foto real em vez do cover SVG. Pode levar até 60 segundos pra revalidar.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="serif">Enquanto não tem fotos prontas</h2>
+    <p class="intro">Os <strong style="color:var(--gold-soft);font-weight:500;">covers SVG editoriais</strong> que acabei de implementar funcionam como hero automático em todos os 15 artigos sem dependência nenhuma de imagem externa. Cada cover tem composição única baseada no pilar e no slug do artigo: vazio (Diagnóstico), monograma (Categoria), Venn de loja+cliente (Pesquisa), arquitetura ascendente (Movimento). Você pode publicar os artigos hoje, e ir trocando os covers por fotos de IA conforme gerar — o portal continua bonito o tempo inteiro.</p>
+  </div>
+</section>
+
+<section class="footer">
+  <div class="container">
+    <div class="wordmark serif">Cliente <em>Mídia</em><sup>TM</sup></div>
+    <div class="meta">Fase 4 · Prompts editoriais · Maio 2026</div>
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente Mídia™ — A nova categoria do varejo premium brasileiro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#0B0B0B;
+  --bg-deep:#080808;
+  --bg-cream:#F4EFE3;
+  --bg-cream-soft:#EDE6D2;
+  --text-light:#EDE7D9;
+  --text-muted:#9B9485;
+  --text-dark:#171513;
+  --text-dark-muted:#5A544A;
+  --gold:#C9A35A;
+  --gold-deep:#A8853F;
+  --gold-soft:#D9BC7E;
+  --border-dark:#1E1C18;
+  --border-light:#D9D2BF;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-light);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.serif{font-family:'Cormorant Garamond',serif;}
+.eyebrow{
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.container{max-width:1240px;margin:0 auto;padding:0 32px;}
+.container-narrow{max-width:880px;margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;transition:opacity .25s ease;}
+a:hover{opacity:.7;}
+img{max-width:100%;display:block;}
+
+/* TOP BAR */
+.topbar{
+  background:var(--bg-deep);
+  border-bottom:1px solid var(--border-dark);
+  padding:10px 0;
+  font-size:11px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--text-muted);
+}
+.topbar-inner{display:flex;justify-content:space-between;align-items:center;}
+.topbar .gold{color:var(--gold);}
+
+/* HEADER */
+.site-header{
+  border-bottom:1px solid var(--border-dark);
+  padding:28px 0;
+}
+.header-inner{display:flex;justify-content:space-between;align-items:center;}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  font-weight:500;
+  letter-spacing:0.04em;
+  color:var(--text-light);
+  display:flex;align-items:baseline;gap:4px;
+}
+.logo sup{font-size:11px;color:var(--gold);letter-spacing:0;}
+.nav ul{display:flex;gap:38px;list-style:none;}
+.nav a{
+  font-size:13px;
+  font-weight:400;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-light);
+  position:relative;
+  padding-bottom:4px;
+}
+.nav a::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
+}
+.nav a:hover::after{transform:scaleX(1);}
+.nav a.active{color:var(--gold);}
+
+/* HERO */
+.hero{
+  padding:100px 0 90px;
+  border-bottom:1px solid var(--border-dark);
+  position:relative;
+}
+.hero .eyebrow{margin-bottom:32px;display:inline-flex;align-items:center;gap:12px;}
+.hero .eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:88px;
+  line-height:1.02;
+  font-weight:500;
+  letter-spacing:-0.015em;
+  margin-bottom:32px;
+  color:var(--text-light);
+  max-width:1000px;
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--gold-soft);
+}
+.hero-sub{
+  font-size:19px;
+  line-height:1.55;
+  color:var(--text-muted);
+  max-width:680px;
+  margin-bottom:48px;
+  font-weight:300;
+}
+.hero-sub strong{color:var(--text-light);font-weight:500;}
+.hero-cta{display:flex;gap:24px;align-items:center;}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 28px;
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-weight:500;
+  transition:all .3s ease;
+  cursor:pointer;
+}
+.btn-primary{
+  background:var(--gold);
+  color:var(--bg-dark);
+  border:1px solid var(--gold);
+}
+.btn-primary:hover{background:var(--gold-deep);border-color:var(--gold-deep);opacity:1;}
+.btn-ghost{
+  background:transparent;
+  color:var(--text-light);
+  border:1px solid var(--border-dark);
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);opacity:1;}
+.btn-text{
+  color:var(--gold);
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+  border-bottom:1px solid transparent;
+  padding-bottom:2px;
+}
+.btn-text:hover{border-bottom-color:var(--gold);opacity:1;}
+
+/* SECTION HEADER */
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  padding:80px 0 48px;
+  border-bottom:1px solid var(--border-dark);
+  margin-bottom:60px;
+}
+.section-head .title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;
+  font-weight:500;
+  letter-spacing:-0.01em;
+  line-height:1;
+}
+.section-head .eyebrow{margin-bottom:18px;display:block;}
+
+/* FEATURED ARTICLE */
+.featured{padding:0 0 100px;}
+.featured-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:64px;
+  align-items:center;
+}
+.featured-image{
+  position:relative;
+  aspect-ratio:4/5;
+  background:linear-gradient(135deg,#1a1815 0%,#2a2520 100%);
+  overflow:hidden;
+}
+.featured-image::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' opacity='0.04'><circle cx='50' cy='50' r='1' fill='%23C9A35A'/></svg>");
+  background-size:24px 24px;
+}
+.featured-image-placeholder{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:16px;
+  color:var(--gold);
+}
+.featured-image-placeholder .frame{
+  width:60%;height:60%;
+  border:1px solid var(--gold);
+  position:relative;
+}
+.featured-image-placeholder .frame::before,
+.featured-image-placeholder .frame::after{
+  content:'';position:absolute;background:var(--gold);
+}
+.featured-image-placeholder .frame::before{
+  width:40px;height:1px;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.featured-image-placeholder .frame::after{
+  width:1px;height:40px;left:50%;top:50%;transform:translate(-50%,-50%);
+}
+.featured-image-placeholder .label{
+  font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);
+  position:absolute;bottom:24px;left:24px;
+}
+.featured-content .tag{
+  display:inline-block;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+  padding-bottom:8px;border-bottom:1px solid var(--gold);
+  margin-bottom:24px;
+}
+.featured-content h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:-0.015em;
+  margin-bottom:24px;
+  color:var(--text-light);
+}
+.featured-content h2 em{font-style:italic;color:var(--gold-soft);font-weight:400;}
+.featured-excerpt{
+  font-size:17px;
+  line-height:1.65;
+  color:var(--text-muted);
+  margin-bottom:32px;
+  font-weight:300;
+}
+.featured-meta{
+  display:flex;gap:24px;align-items:center;
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:32px;
+}
+.featured-meta .divider{width:24px;height:1px;background:var(--text-muted);opacity:.4;}
+
+/* PILLARS */
+.pillars{
+  background:var(--bg-deep);
+  padding:100px 0;
+  border-top:1px solid var(--border-dark);
+  border-bottom:1px solid var(--border-dark);
+}
+.pillars-intro{text-align:center;margin-bottom:80px;}
+.pillars-intro .eyebrow{margin-bottom:20px;}
+.pillars-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  max-width:780px;margin:0 auto;
+}
+.pillars-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:32px;
+}
+.pillar-card{
+  padding:40px 28px;
+  border:1px solid var(--border-dark);
+  background:var(--bg-dark);
+  transition:all .4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.pillar-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;
+}
+.pillar-card:hover{border-color:#2A2722;transform:translateY(-4px);}
+.pillar-card:hover::before{transform:scaleX(1);}
+.pillar-number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-style:italic;
+  color:var(--gold);
+  margin-bottom:24px;
+  letter-spacing:0.1em;
+}
+.pillar-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  font-weight:500;
+  margin-bottom:14px;
+  line-height:1.15;
+}
+.pillar-card p{
+  font-size:14px;
+  line-height:1.6;
+  color:var(--text-muted);
+  margin-bottom:24px;
+}
+.pillar-card .count{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+}
+
+/* MANIFESTO QUOTE */
+.manifesto-block{
+  background:var(--bg-cream);
+  color:var(--text-dark);
+  padding:140px 0;
+  position:relative;
+}
+.manifesto-inner{
+  max-width:900px;margin:0 auto;padding:0 32px;
+  text-align:center;
+}
+.manifesto-inner .eyebrow{color:var(--gold-deep);margin-bottom:40px;}
+.manifesto-inner .eyebrow::before,
+.manifesto-inner .eyebrow::after{
+  content:'';display:inline-block;width:40px;height:1px;background:var(--gold-deep);
+  vertical-align:middle;margin:0 16px;
+}
+.manifesto-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;
+  font-style:italic;
+  line-height:1.2;
+  font-weight:400;
+  letter-spacing:-0.01em;
+  margin-bottom:40px;
+  color:var(--text-dark);
+}
+.manifesto-quote .accent{color:var(--gold-deep);font-style:normal;font-weight:500;}
+.manifesto-cite{
+  font-size:12px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--text-dark-muted);font-weight:500;
+}
+
+/* ARTICLES GRID */
+.articles-section{padding:100px 0;}
+.articles-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
+}
+.article-card{
+  cursor:pointer;
+  transition:all .3s ease;
+}
+.article-card .img-wrap{
+  aspect-ratio:4/3;
+  background:linear-gradient(135deg,#1a1815 0%,#2a2520 100%);
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+.article-card .img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' opacity='0.05'><circle cx='50' cy='50' r='1' fill='%23C9A35A'/></svg>");
+  background-size:20px 20px;
+}
+.article-card .img-wrap .frame-mini{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:48px;height:48px;border:1px solid var(--gold);opacity:.6;
+}
+.article-card .tag{
+  display:inline-block;
+  font-size:10px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+  margin-bottom:14px;
+}
+.article-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;
+  font-weight:500;
+  line-height:1.15;
+  letter-spacing:-0.005em;
+  margin-bottom:14px;
+  color:var(--text-light);
+  transition:color .3s ease;
+}
+.article-card:hover h3{color:var(--gold-soft);}
+.article-card p{
+  font-size:14px;
+  color:var(--text-muted);
+  line-height:1.6;
+  margin-bottom:18px;
+}
+.article-card .meta{
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.article-card .meta .sep{margin:0 10px;color:var(--gold);opacity:.6;}
+
+/* DATA SECTION */
+.data-section{
+  padding:120px 0;
+  background:var(--bg-deep);
+  border-top:1px solid var(--border-dark);
+  border-bottom:1px solid var(--border-dark);
+}
+.data-intro{text-align:center;margin-bottom:80px;}
+.data-intro h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:46px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  max-width:760px;margin:20px auto 0;
+}
+.data-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid var(--border-dark);
+}
+.data-item{
+  padding:60px 40px;
+  border-right:1px solid var(--border-dark);
+  text-align:center;
+  position:relative;
+}
+.data-item:last-child{border-right:none;}
+.data-item .number{
+  font-family:'Cormorant Garamond',serif;
+  font-size:76px;
+  font-weight:500;
+  line-height:1;
+  color:var(--gold);
+  margin-bottom:20px;
+  letter-spacing:-0.02em;
+}
+.data-item .number .unit{font-size:32px;}
+.data-item .label{
+  font-size:13px;
+  line-height:1.55;
+  color:var(--text-muted);
+  max-width:240px;margin:0 auto;
+}
+
+/* REPORT CTA */
+.report-cta{
+  padding:140px 0;
+  background:var(--bg-cream);
+  color:var(--text-dark);
+}
+.report-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;
+  align-items:center;
+}
+.report-visual{
+  aspect-ratio:3/4;
+  background:linear-gradient(140deg,#1a1612 0%,#0B0B0B 100%);
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--gold);
+}
+.report-visual::before{
+  content:'';position:absolute;inset:14px;
+  border:1px solid var(--gold-deep);opacity:.4;
+}
+.report-cover{
+  padding:60px 40px;
+  text-align:center;
+  position:relative;z-index:1;
+}
+.report-cover .eyebrow{color:var(--gold);margin-bottom:32px;display:block;}
+.report-cover h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;
+  font-weight:500;
+  line-height:1.1;
+  color:var(--gold-soft);
+  margin-bottom:14px;
+}
+.report-cover .year{
+  font-family:'Cormorant Garamond',serif;
+  font-size:80px;
+  font-style:italic;
+  color:var(--gold);
+  font-weight:400;
+}
+.report-content .eyebrow{color:var(--gold-deep);margin-bottom:24px;display:block;}
+.report-content h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.01em;
+  margin-bottom:24px;
+  color:var(--text-dark);
+}
+.report-content p{
+  font-size:17px;
+  line-height:1.65;
+  color:var(--text-dark-muted);
+  margin-bottom:32px;
+  font-weight:400;
+}
+.report-form{
+  display:flex;gap:12px;
+  border-bottom:1px solid var(--text-dark);
+  padding-bottom:12px;
+  margin-bottom:18px;
+}
+.report-form input{
+  flex:1;
+  background:transparent;
+  border:none;outline:none;
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  color:var(--text-dark);
+  padding:8px 0;
+}
+.report-form input::placeholder{color:var(--text-dark-muted);}
+.report-form button{
+  background:transparent;
+  border:none;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  font-weight:500;
+  color:var(--gold-deep);
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.report-disclaimer{
+  font-size:12px;letter-spacing:0.05em;
+  color:var(--text-dark-muted);
+}
+
+/* AUTHORITY STRIP */
+.authority{
+  padding:60px 0;
+  border-bottom:1px solid var(--border-dark);
+}
+.authority-grid{
+  display:grid;
+  grid-template-columns:auto 1fr auto auto auto auto auto;
+  gap:48px;
+  align-items:center;
+}
+.authority-label{
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+.authority-source{
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;font-style:italic;
+  color:var(--text-light);opacity:.6;
+}
+
+/* FOOTER */
+.site-footer{
+  background:var(--bg-deep);
+  padding:100px 0 40px;
+  border-top:1px solid var(--border-dark);
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:64px;
+  margin-bottom:80px;
+}
+.footer-brand .logo{margin-bottom:20px;}
+.footer-brand p{
+  font-size:14px;
+  line-height:1.65;
+  color:var(--text-muted);
+  max-width:340px;
+}
+.footer-col h4{
+  font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;
+  margin-bottom:24px;
+  padding-bottom:16px;border-bottom:1px solid var(--border-dark);
+}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:12px;}
+.footer-col ul a{
+  font-size:14px;
+  color:var(--text-light);
+}
+.footer-bottom{
+  padding-top:32px;
+  border-top:1px solid var(--border-dark);
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:12px;letter-spacing:0.05em;
+  color:var(--text-muted);
+}
+.footer-bottom .viralize{
+  color:var(--gold);
+}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero h1{font-size:56px;}
+  .featured-grid{grid-template-columns:1fr;gap:48px;}
+  .pillars-grid{grid-template-columns:repeat(2,1fr);}
+  .articles-grid{grid-template-columns:1fr;}
+  .data-grid{grid-template-columns:1fr;}
+  .data-item{border-right:none;border-bottom:1px solid var(--border-dark);}
+  .report-grid{grid-template-columns:1fr;gap:48px;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .nav{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <div>Edição Nº 01 · Maio 2026</div>
+    <div><span class="gold">Cliente Mídia™</span> · Centro de Autoridade da Categoria</div>
+    <div>São Paulo · Brasil</div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">Cliente Mídia<sup>TM</sup></div>
+    <nav class="nav">
+      <ul>
+        <li><a href="#" class="active">Manifesto</a></li>
+        <li><a href="#">Diagnóstico</a></li>
+        <li><a href="#">Categoria</a></li>
+        <li><a href="#">Pesquisa</a></li>
+        <li><a href="#">Movimento</a></li>
+        <li><a href="#">Relatório</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Manifesto · Edição inaugural</div>
+    <h1 class="serif">Sua loja investe em alcance.<br>Mas o alcance <em>não é seu</em>.</h1>
+    <p class="hero-sub">Em 2026, anunciar no Instagram ficou <strong>12% mais caro</strong> — só de imposto. O custo por clique sobe todo ano. O algoritmo muda sem avisar. E quando você para de pagar, você desaparece. <strong>Existe uma saída.</strong> Ela não vem de mais anúncios. Ela vem de quem já comprou na sua loja.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Ler o manifesto completo →</a>
+      <a href="#" class="btn-text">Baixar o Relatório 2026 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- AUTHORITY STRIP -->
+<section class="authority">
+  <div class="container">
+    <div class="authority-grid">
+      <div class="authority-label">Pesquisa<br>citada</div>
+      <div></div>
+      <div class="authority-source">NRF</div>
+      <div class="authority-source">CNDL/SPC</div>
+      <div class="authority-source">EmbedSocial</div>
+      <div class="authority-source">Nuvemshop</div>
+      <div class="authority-source">BrandLovers</div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SECTION -->
+<section class="data-section">
+  <div class="container-narrow">
+    <div class="data-intro">
+      <div class="eyebrow">O problema em números</div>
+      <h2 class="serif">O mercado está preso num modelo caro, frágil e <em style="font-style:italic;color:var(--gold-soft);">alugado</em>.</h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="data-grid">
+      <div class="data-item">
+        <div class="number">R$ 8,68<span class="unit"> bi</span></div>
+        <div class="label">investidos em publicidade digital no Brasil em 2024</div>
+      </div>
+      <div class="data-item">
+        <div class="number">92<span class="unit">%</span></div>
+        <div class="label">dos consumidores confiam mais em pessoas reais do que em anúncios</div>
+      </div>
+      <div class="data-item">
+        <div class="number">+12,15<span class="unit">%</span></div>
+        <div class="label">de aumento no custo dos Meta Ads a partir de janeiro de 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLE -->
+<section class="featured">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Leitura essencial</span>
+        <div class="title serif">Artigo em destaque</div>
+      </div>
+      <a href="#" class="btn-text">Ver todos os artigos →</a>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-image">
+        <div class="featured-image-placeholder">
+          <div class="frame"></div>
+          <div class="label">Imagem editorial · gerada por IA</div>
+        </div>
+      </div>
+      <div class="featured-content">
+        <span class="tag">Diagnóstico</span>
+        <h2 class="serif">O fim do <em>alcance alugado</em>.</h2>
+        <p class="featured-excerpt">Por que o varejo premium brasileiro precisa parar de alugar atenção e começar a construir presença. Uma análise estrutural sobre o modelo que pertence a outros — e pode ser retirado a qualquer momento.</p>
+        <div class="featured-meta">
+          <span>12 min de leitura</span>
+          <span class="divider"></span>
+          <span>Maio · 2026</span>
+        </div>
+        <a href="#" class="btn btn-ghost">Ler análise completa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO QUOTE -->
+<section class="manifesto-block">
+  <div class="manifesto-inner">
+    <div class="eyebrow">Declaração de categoria</div>
+    <p class="manifesto-quote serif">"O maior ativo do varejo premium não está nos anúncios. Está nas <span class="accent">pessoas que já te escolheram</span>."</p>
+    <div class="manifesto-cite">— Manifesto Cliente Mídia™ · 2026</div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="container">
+    <div class="pillars-intro">
+      <div class="eyebrow">Os quatro pilares editoriais</div>
+      <h2 class="serif">Onde uma nova categoria é <em style="font-style:italic;color:var(--gold-soft);">documentada</em>.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-number serif"><em>i.</em></div>
+        <h3 class="serif">Diagnóstico</h3>
+        <p>O problema do alcance alugado. O custo real do CAC. A jaula fiscal do Instagram. Por que o modelo antigo está rachando.</p>
+        <div class="count">04 artigos →</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number serif"><em>ii.</em></div>
+        <h3 class="serif">Categoria</h3>
+        <p>O que é Cliente Mídia™. As diferenças entre UGC, influencer e Cliente Mídia. Os pilares da distribuição orgânica.</p>
+        <div class="count">04 artigos →</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number serif"><em>iii.</em></div>
+        <h3 class="serif">Pesquisa</h3>
+        <p>Relatórios, benchmarks, estudos de caso, dados primários do varejo premium brasileiro em 2026.</p>
+        <div class="count">03 artigos →</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-number serif"><em>iv.</em></div>
+        <h3 class="serif">Movimento</h3>
+        <p>O futuro da categoria. Predições. Entrevistas com lojistas pioneiros. A construção do novo padrão do varejo.</p>
+        <div class="count">03 artigos →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARTICLES GRID -->
+<section class="articles-section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Edição inaugural</span>
+        <div class="title serif">Artigos recentes</div>
+      </div>
+      <a href="#" class="btn-text">Arquivo completo →</a>
+    </div>
+    <div class="articles-grid">
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Categoria</span>
+        <h3 class="serif">Cliente Mídia™ — a definição oficial.</h3>
+        <p>A nomenclatura, a infraestrutura e os limites da categoria que está sendo construída no varejo premium brasileiro.</p>
+        <div class="meta">08 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Diagnóstico</span>
+        <h3 class="serif">O verdadeiro custo do CAC no varejo de moda em 2026.</h3>
+        <p>Uma análise das margens, da inflação dos leilões e do que cada nova cliente realmente custa hoje no Brasil.</p>
+        <div class="meta">10 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Pesquisa</span>
+        <h3 class="serif">Por que sua melhor cliente nunca foi seu anúncio.</h3>
+        <p>O boca a boca digital responde por 33% das descobertas de marca. Os anúncios? Custam 11 vezes mais por conversão.</p>
+        <div class="meta">14 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Categoria</span>
+        <h3 class="serif">UGC, influencer ou Cliente Mídia? As três distinções que ninguém faz.</h3>
+        <p>Por que esses três modelos foram confundidos durante uma década — e por que essa confusão custou bilhões ao varejo.</p>
+        <div class="meta">09 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Movimento</span>
+        <h3 class="serif">A nova infraestrutura do varejo premium brasileiro.</h3>
+        <p>O que muda quando a distribuição da marca deixa de ser comprada e passa a ser cultivada na própria base de clientes.</p>
+        <div class="meta">16 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+      <article class="article-card">
+        <div class="img-wrap"><div class="frame-mini"></div></div>
+        <span class="tag">Diagnóstico</span>
+        <h3 class="serif">A reforma tributária e o novo piso dos Meta Ads.</h3>
+        <p>O impacto permanente do PIS/COFINS e ISS sobre o custo da mídia paga — e o que isso significa para sua margem.</p>
+        <div class="meta">07 min<span class="sep">·</span>Maio 2026</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- REPORT CTA -->
+<section class="report-cta">
+  <div class="container">
+    <div class="report-grid">
+      <div class="report-visual">
+        <div class="report-cover">
+          <span class="eyebrow">Relatório anual</span>
+          <h3 class="serif">Cliente Mídia™</h3>
+          <div class="year serif">2026</div>
+        </div>
+      </div>
+      <div class="report-content">
+        <span class="eyebrow">Documento inaugural</span>
+        <h2 class="serif">O Relatório Cliente Mídia™ 2026.</h2>
+        <p>Setenta e duas páginas de pesquisa primária, dados de mercado e análise estratégica sobre a categoria que está sendo construída no varejo premium brasileiro. Distribuição restrita a lojistas, gestoras e estrategistas.</p>
+        <form class="report-form" onsubmit="event.preventDefault(); alert('Aqui captura o e-mail e dispara o lead magnet por automação.');">
+          <input type="email" placeholder="seu e-mail profissional" required>
+          <button type="submit">Receber o relatório →</button>
+        </form>
+        <p class="report-disclaimer">Envio imediato. Sem listas alugadas. Cancele quando quiser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">Cliente Mídia<sup>TM</sup></div>
+        <p>Centro de autoridade da categoria Cliente Mídia™ no Brasil. Documentamos a transformação do varejo premium em uma nova era de distribuição orgânica.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Editorial</h4>
+        <ul>
+          <li><a href="#">Manifesto</a></li>
+          <li><a href="#">Diagnóstico</a></li>
+          <li><a href="#">Categoria</a></li>
+          <li><a href="#">Pesquisa</a></li>
+          <li><a href="#">Movimento</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul>
+          <li><a href="#">Relatório 2026</a></li>
+          <li><a href="#">Glossário da Categoria</a></li>
+          <li><a href="#">Imprensa</a></li>
+          <li><a href="#">Sala de pesquisa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Institucional</h4>
+        <ul>
+          <li><a href="#">Sobre o portal</a></li>
+          <li><a href="#">Política editorial</a></li>
+          <li><a href="#">Contato</a></li>
+          <li><a href="https://viralizeluxo.com.br" style="color:var(--gold);">Viralize Luxo ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2026 Cliente Mídia™ — Todos os direitos reservados.</div>
+      <div>A plataforma que ativa o modelo é a <span class="viralize">Viralize Luxo</span>.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

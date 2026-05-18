@@ -1,0 +1,44 @@
+{
+  "name": "cliente-midia-portal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@sanity/client": "^6.21.3",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.62.2",
+    "next-sanity": "^9.8.18",
+    "sanity": "^3.62.2",
+    "styled-components": "^6.1.13",
+    "@portabletext/react": "^3.1.0",
+    "@supabase/supabase-js": "^2.45.4",
+    "@supabase/ssr": "^0.5.1",
+    "resend": "^4.0.0",
+    "cloudinary": "^2.5.1",
+    "next-cloudinary": "^6.16.0",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^2.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "14.2.15",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

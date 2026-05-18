@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulador Cliente Mídia™ — Impacto na sua loja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a96e;
+    --gold-dark: #a07840;
+    --gold-light: #d4b87a;
+    --bg: #0a0a0a;
+    --bg2: #111111;
+    --bg3: #0f0d08;
+    --bg-gold: #120f08;
+    --border: #1e1e1e;
+    --border-gold: #3a2f1a;
+    --text: #f0ede8;
+    --text2: #8a7d6b;
+    --text3: #5a5148;
+    --text4: #3a3530;
+    --green: #6dbf8e;
+    --red: #bf6d6d;
+    --neu: #8a7d6b;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* TICKER */
+  .ticker { background: var(--bg3); border-bottom: 1px solid var(--border); padding: .55rem 0; overflow: hidden; white-space: nowrap; }
+  .ticker-inner { display: inline-block; animation: tick 28s linear infinite; font-size: 10px; letter-spacing: .18em; color: var(--text4); text-transform: uppercase; }
+  @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* HERO */
+  .hero { text-align: center; padding: 4rem 2rem 3.5rem; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,169,110,0.06) 0%, transparent 70%); pointer-events: none; }
+  .eyebrow { font-size: 10px; letter-spacing: .22em; color: var(--text2); text-transform: uppercase; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 400; color: var(--text); line-height: 1.25; margin-bottom: .75rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero p { font-size: 14px; color: var(--text3); max-width: 500px; margin: 0 auto; line-height: 1.75; }
+
+  /* STEPS */
+  .steps-wrap { max-width: 680px; margin: 2rem auto 0; padding: 0 1.5rem; }
+  .steps { display: flex; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+  .step { flex: 1; padding: .75rem .5rem; text-align: center; font-size: 11px; color: var(--text4); background: var(--bg2); cursor: pointer; border-right: 1px solid var(--border); letter-spacing: .06em; transition: all .25s; user-select: none; }
+  .step:last-child { border-right: none; }
+  .step:hover { color: var(--text2); }
+  .step.active { background: #1a1510; color: var(--gold); font-weight: 500; }
+  .step-num { display: block; font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+
+  /* LAYOUT */
+  .container { max-width: 680px; margin: 0 auto; padding: 0 1.5rem; }
+  .section { display: none; padding-top: 2.5rem; }
+  .section.visible { display: block; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 3vw, 26px); font-weight: 400; color: var(--text); margin-bottom: .35rem; }
+  .sec-sub { font-size: 13px; color: var(--text4); margin-bottom: 2rem; line-height: 1.7; }
+
+  /* SLIDER */
+  .slider-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; margin-bottom: 1rem; transition: border-color .2s; }
+  .slider-block:focus-within { border-color: var(--border-gold); }
+  .slider-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: .4rem; }
+  .slider-label { font-size: 14px; font-weight: 500; color: var(--text); }
+  .slider-val { font-size: 22px; font-weight: 600; color: var(--gold); white-space: nowrap; flex-shrink: 0; }
+  .slider-hint { font-size: 12px; color: var(--text3); margin-bottom: 1rem; line-height: 1.6; }
+  input[type=range] { width: 100%; -webkit-appearance: none; appearance: none; height: 3px; background: var(--border); border-radius: 2px; outline: none; cursor: pointer; }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--gold); cursor: pointer; border: 3px solid var(--bg); transition: transform .15s; }
+  input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  input[type=range]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--gold); cursor: pointer; border: 3px solid var(--bg); }
+  .slider-range { display: flex; justify-content: space-between; font-size: 10px; color: var(--text4); margin-top: .45rem; }
+
+  /* MECHANIC FLOW */
+  .mech-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; margin-bottom: 1rem; }
+  .mech-label { font-size: 10px; letter-spacing: .16em; color: var(--text2); text-transform: uppercase; margin-bottom: 1.25rem; }
+  .flow { display: grid; grid-template-columns: 1fr 20px 1fr 20px 1fr 20px 1fr; align-items: center; gap: 4px; }
+  .flow-step { text-align: center; padding: 1rem .5rem; background: #0f0f0f; border: 1px solid var(--border); border-radius: 10px; }
+  .flow-arrow { color: var(--text4); font-size: 18px; text-align: center; }
+  .flow-icon { font-size: 24px; margin-bottom: .4rem; }
+  .flow-num { font-size: 16px; font-weight: 600; color: var(--gold); margin-bottom: .2rem; }
+  .flow-label { font-size: 10px; color: var(--text3); line-height: 1.4; }
+
+  /* TRUST BADGE — fator confiança */
+  .trust-badge { display: inline-flex; align-items: center; gap: 6px; background: #0d1a12; border: 1px solid #1a3d28; border-radius: 6px; padding: 4px 10px; font-size: 10px; color: var(--green); margin-top: .75rem; }
+
+  /* METODOLOGIA BOX */
+  .metod { background: #0d1208; border: 1px solid #1e2a14; border-radius: 10px; padding: 1rem 1.25rem; margin-top: .75rem; margin-bottom: 1rem; }
+  .metod-title { font-size: 10px; letter-spacing: .14em; color: #5a7a4a; text-transform: uppercase; margin-bottom: .6rem; }
+  .metod-row { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px solid #1a2210; font-size: 11px; }
+  .metod-row:last-child { border-bottom: none; }
+  .metod-k { color: #4a6040; }
+  .metod-v { color: var(--green); font-weight: 500; }
+  .metod-note { font-size: 10px; color: #3a5030; margin-top: .6rem; line-height: 1.6; }
+  .metod-note strong { color: #5a7a4a; font-weight: 500; }
+
+  /* RESULTS */
+  .results-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .875rem; margin-bottom: 1rem; }
+  .res-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; }
+  .res-card.gold { border-color: var(--border-gold); background: var(--bg-gold); }
+  .res-label { font-size: 10px; color: var(--text4); letter-spacing: .06em; text-transform: uppercase; margin-bottom: .3rem; }
+  .res-val { font-size: 24px; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+  .res-val.gold { color: var(--gold); }
+  .res-desc { font-size: 11px; color: var(--text3); line-height: 1.55; }
+
+  /* ANALOGY */
+  .analogy { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; margin-bottom: 1rem; }
+  .analogy-label { font-size: 10px; letter-spacing: .16em; color: var(--text2); text-transform: uppercase; margin-bottom: .75rem; }
+  .analogy-text { font-size: 13px; color: var(--text3); line-height: 1.85; }
+  .analogy-text strong { color: var(--text); font-weight: 500; }
+
+  /* VERDICT */
+  .verdict { background: var(--bg-gold); border: 1px solid var(--border-gold); border-radius: 14px; padding: 1.75rem; margin-bottom: 1rem; }
+  .verdict-label { font-size: 10px; letter-spacing: .16em; color: var(--text2); text-transform: uppercase; margin-bottom: .75rem; }
+  .verdict-big { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 24px); color: var(--gold); margin-bottom: .75rem; line-height: 1.35; }
+  .verdict-text { font-size: 13px; color: var(--text3); line-height: 1.85; }
+  .verdict-text strong { color: var(--gold); font-weight: 500; }
+
+  /* VER MAIS / RECOLHER */
+  .expandable { position: relative; }
+  .exp-body { overflow: hidden; transition: max-height .35s ease; }
+  .exp-body.collapsed { max-height: 3.2em; }
+  .exp-body.expanded { max-height: 500px; }
+  .exp-fade {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2.5em;
+    background: linear-gradient(to bottom, transparent, var(--bg2));
+    pointer-events: none;
+    transition: opacity .25s;
+  }
+  .exp-fade.hidden { opacity: 0; pointer-events: none; }
+  .exp-fade-gold { background: linear-gradient(to bottom, transparent, var(--bg-gold)); }
+  .exp-toggle {
+    display: flex; align-items: center; gap: 5px;
+    background: none; border: none; cursor: pointer;
+    font-size: 11px; color: var(--gold); font-family: 'Inter', sans-serif;
+    margin-top: .6rem; padding: 0; letter-spacing: .04em;
+    transition: color .2s;
+  }
+  .exp-toggle:hover { color: var(--gold-light); }
+  .exp-arrow { display: inline-block; transition: transform .3s; font-size: 10px; }
+  .exp-arrow.open { transform: rotate(180deg); }
+
+  /* COMPARE */
+  .compare-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .875rem; margin-bottom: 1rem; }
+  .compare-col { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem; }
+  .compare-col.winner { border-color: var(--gold); background: var(--bg-gold); }
+  .compare-badge { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; display: inline-block; margin-bottom: .875rem; }
+  .badge-gold { background: #1a1208; color: var(--gold); border: 1px solid var(--border-gold); }
+  .badge-dim { background: #161616; color: var(--text4); border: 1px solid var(--border); }
+  .compare-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: .2rem; }
+  .compare-price { font-size: 20px; font-weight: 600; color: var(--gold); margin-bottom: 1rem; }
+  .compare-price span { font-size: 11px; font-weight: 400; color: var(--text3); }
+  .compare-row { display: flex; justify-content: space-between; align-items: flex-start; padding: .45rem 0; border-bottom: 1px solid #161616; font-size: 11px; gap: .5rem; }
+  .compare-row:last-child { border-bottom: none; }
+  .row-key { color: var(--text3); flex-shrink: 0; }
+  .row-val { font-weight: 500; text-align: right; }
+  .row-val.good { color: var(--green); }
+  .row-val.bad { color: var(--red); }
+  .row-val.neu { color: var(--neu); }
+
+  /* CONTAINER WIDE — para o comparativo ficar lado a lado */
+  .container-wide { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+  .container-wide .sec-title,
+  .container-wide .sec-sub { max-width: 680px; }
+
+  /* POTENCIAL BOX — destaque 70k */
+  .potencial-box { background: #0a1a0f; border: 1px solid #1d4028; border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: .875rem; }
+  .pot-label { font-size: 9px; letter-spacing: .14em; color: #4a8060; text-transform: uppercase; margin-bottom: .5rem; }
+  .pot-num { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--green); font-weight: 400; margin-bottom: .25rem; line-height: 1; }
+  .pot-desc { font-size: 11px; color: #4a7060; line-height: 1.6; }
+  .pot-desc strong { color: var(--green); font-weight: 500; }
+  .pot-calc { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: .5rem; margin-top: .875rem; }
+  .pot-calc-item { background: #071410; border: 1px solid #1a3025; border-radius: 8px; padding: .625rem; text-align: center; }
+  .pot-calc-val { font-size: 15px; font-weight: 600; color: var(--green); margin-bottom: .15rem; }
+  .pot-calc-key { font-size: 9px; color: #3a6050; line-height: 1.4; }
+
+  /* CPP DESTAQUE */
+  .cpp-destaque { background: #071410; border: 1px solid #1a3025; border-radius: 8px; padding: .75rem 1rem; margin-top: .75rem; display: flex; justify-content: space-between; align-items: center; }
+  .cpp-k { font-size: 11px; color: #4a7060; }
+  .cpp-v { font-size: 18px; font-weight: 600; color: var(--green); }
+
+  /* CTA */
+  .cta-block { background: var(--bg-gold); border: 1px solid var(--border-gold); border-radius: 14px; padding: 2.5rem; text-align: center; margin-bottom: 1rem; position: relative; overflow: hidden; }
+  .cta-block::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 120%, rgba(201,169,110,0.08) 0%, transparent 70%); pointer-events: none; }
+  .cta-block h3 { font-family: 'Playfair Display', serif; font-size: clamp(22px, 3vw, 28px); font-weight: 400; color: var(--gold); margin-bottom: .5rem; }
+  .cta-block p { font-size: 13px; color: var(--text3); margin-bottom: 1.75rem; line-height: 1.75; max-width: 420px; margin-left: auto; margin-right: auto; }
+  .cta-btn { display: inline-block; background: var(--gold); color: #0a0a0a; padding: 1rem 2.5rem; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Inter', sans-serif; letter-spacing: .04em; text-decoration: none; transition: background .2s, transform .15s; position: relative; }
+  .cta-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .cta-btn:active { transform: translateY(0); }
+
+  /* NAV */
+  .nav-btns { display: flex; gap: .875rem; padding: 1.75rem 0 3rem; }
+  .btn { flex: 1; padding: 1rem; border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .2s; letter-spacing: .02em; }
+  .btn-secondary { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+  .btn-secondary:hover { border-color: #3a3530; color: var(--text); }
+  .btn-primary { background: var(--gold); color: #0a0a0a; font-weight: 600; font-size: 15px; padding: 1.1rem; letter-spacing: .03em; box-shadow: 0 8px 32px rgba(201,169,110,0.2); }
+  .btn-primary:hover { background: var(--gold-light); box-shadow: 0 12px 40px rgba(201,169,110,0.32); transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 760px) {
+    .compare-grid { grid-template-columns: 1fr; gap: .75rem; }
+    .container-wide { padding: 0 1rem; }
+  }
+  @media (max-width: 600px) {
+    .hero { padding: 2.5rem 1.25rem 2rem; }
+    .steps-wrap { padding: 0 1rem; }
+    .container { padding: 0 1rem; }
+    .slider-block { padding: 1.25rem; }
+    .slider-val { font-size: 18px; }
+    .slider-header { gap: .5rem; }
+    .flow { grid-template-columns: 1fr 14px 1fr 14px 1fr 14px 1fr; gap: 2px; }
+    .flow-step { padding: .75rem .25rem; }
+    .flow-icon { font-size: 18px; }
+    .flow-num { font-size: 13px; }
+    .flow-label { font-size: 9px; }
+    .flow-arrow { font-size: 13px; }
+    .results-grid { gap: .5rem; }
+    .res-card { padding: 1rem; }
+    .res-val { font-size: 18px; }
+    .pot-calc { grid-template-columns: 1fr 1fr 1fr; }
+    .cta-block { padding: 1.75rem 1.25rem; }
+    .nav-btns { padding-bottom: 2rem; }
+    .mech-card { padding: 1.25rem; }
+    .analogy { padding: 1.25rem; }
+    .verdict { padding: 1.25rem; }
+  }
+  @media (max-width: 420px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .pot-calc { grid-template-columns: 1fr; }
+  }
+
+  /* PORTAL BAR — barra editorial fixa que liga o simulador ao portal */
+  .portal-bar { background: #060606; border-bottom: 1px solid #181614; }
+  .portal-bar-inner {
+    max-width: 1240px; margin: 0 auto; padding: 12px 1.5rem;
+    display: flex; align-items: center; gap: 1.25rem;
+    font-size: 11px; letter-spacing: .04em; color: #6a6258;
+  }
+  .portal-back {
+    display: inline-flex; align-items: baseline; gap: .35rem;
+    color: #ede7d9; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 16px;
+  }
+  .portal-back:hover .portal-back-arrow { transform: translateX(-2px); }
+  .portal-back-arrow { color: var(--gold); font-family: 'Inter', sans-serif; font-size: 13px; transition: transform .2s; }
+  .portal-back-label em { font-style: italic; }
+  .portal-back-label sup { color: var(--gold); font-size: 9px; margin-left: 1px; }
+  .portal-bar-meta {
+    flex: 1; text-align: center; font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: #5a5148;
+  }
+  .portal-bar-dot { color: var(--gold); margin-right: 6px; font-size: 6px; vertical-align: middle; }
+  .portal-bar-links { display: flex; gap: 1.25rem; }
+  .portal-bar-links a {
+    font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: #8a7d6b; text-decoration: none; transition: color .2s;
+  }
+  .portal-bar-links a:hover { color: var(--gold); }
+  @media (max-width: 760px) {
+    .portal-bar-meta { display: none; }
+    .portal-bar-inner { padding: 10px 1rem; }
+  }
+  @media (max-width: 480px) {
+    .portal-bar-links { gap: .85rem; }
+    .portal-bar-links a { font-size: 10px; }
+    .portal-back { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PORTAL BAR — vínculo editorial com o Centro de Autoridade -->
+<div class="portal-bar">
+  <div class="portal-bar-inner">
+    <a href="/" class="portal-back" aria-label="Voltar ao portal Cliente Mídia">
+      <span class="portal-back-arrow">←</span>
+      <span class="portal-back-label">Cliente <em>Mídia</em><sup>™</sup></span>
+    </a>
+    <div class="portal-bar-meta">
+      <span class="portal-bar-dot">●</span>
+      Você está numa ferramenta do Centro de Autoridade
+    </div>
+    <div class="portal-bar-links">
+      <a href="/manifesto">Manifesto</a>
+      <a href="/relatorio">Relatório</a>
+      <a href="/artigos">Artigos</a>
+    </div>
+  </div>
+</div>
+
+<div class="ticker">
+  <span class="ticker-inner">CLIENTE MÍDIA™&nbsp;•&nbsp;A NOVA CATEGORIA DO VAREJO PREMIUM&nbsp;•&nbsp;ALCANCE ORGÂNICO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•&nbsp;CLIENTE MÍDIA™&nbsp;•&nbsp;A NOVA CATEGORIA DO VAREJO PREMIUM&nbsp;•&nbsp;ALCANCE ORGÂNICO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•&nbsp;CLIENTE MÍDIA™&nbsp;•&nbsp;A NOVA CATEGORIA DO VAREJO PREMIUM&nbsp;•&nbsp;ALCANCE ORGÂNICO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CLIENTE MÍDIA™&nbsp;•&nbsp;A NOVA CATEGORIA DO VAREJO PREMIUM&nbsp;•&nbsp;ALCANCE ORGÂNICO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•&nbsp;CLIENTE MÍDIA™&nbsp;•&nbsp;A NOVA CATEGORIA DO VAREJO PREMIUM&nbsp;•&nbsp;ALCANCE ORGÂNICO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•&nbsp;VIRALIZE LUXO&nbsp;•&nbsp;CLIENTE MÍDIA™&nbsp;•&nbsp;O NOVO PADRÃO DO VAREJO&nbsp;•&nbsp;DISTRIBUIÇÃO CONSTRÓI MARCA&nbsp;•</span>
+</div>
+
+<div class="hero">
+  <div class="eyebrow">Centro de Autoridade · Ferramenta interativa</div>
+  <h1>Descubra quanto sua loja pode crescer <em>sem pagar por tráfego</em></h1>
+  <p>Coloque os dados da sua loja. Em 3 passos você vai ver exatamente o que a Viralize Luxo entrega — e quanto você está desperdiçando hoje.</p>
+</div>
+
+<div class="steps-wrap">
+  <div class="steps">
+    <div class="step active" onclick="goStep(1)"><span class="step-num">1</span>Sua loja</div>
+    <div class="step" onclick="goStep(2)"><span class="step-num">2</span>O impacto</div>
+    <div class="step" onclick="goStep(3)"><span class="step-num">3</span>Comparativo</div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════ PASSO 1 ══════════ -->
+<div class="section visible" id="step1">
+  <div class="sec-title">Sobre a sua loja</div>
+  <div class="sec-sub">Sem complicação. Coloque os dados que você já sabe de cabeça.</div>
+
+  <div class="slider-block">
+    <div class="slider-header">
+      <div>
+        <div class="slider-label">Quantos clientes entram na sua loja por mês?</div>
+        <div class="slider-hint">Conte todos que entram — comprem ou não. Se não souber o número exato, use uma estimativa.</div>
+      </div>
+      <div class="slider-val" id="v-clientes">150</div>
+    </div>
+    <input type="range" min="20" max="800" step="10" value="150" id="s-clientes">
+    <div class="slider-range"><span>20 clientes</span><span>800 clientes</span></div>
+  </div>
+
+  <div class="slider-block">
+    <div class="slider-header">
+      <div>
+        <div class="slider-label">Quanto você gasta hoje em anúncios por mês?</div>
+        <div class="slider-hint">Valor pago ao Facebook Ads, Instagram Ads ou Google. Se não usa anúncios, deixe em R$ 0.</div>
+      </div>
+      <div class="slider-val" id="v-ads">R$ 3.000</div>
+    </div>
+    <input type="range" min="0" max="30000" step="500" value="3000" id="s-ads">
+    <div class="slider-range"><span>R$ 0</span><span>R$ 30.000</span></div>
+  </div>
+
+  <div class="slider-block">
+    <div class="slider-header">
+      <div>
+        <div class="slider-label">Qual é o ticket médio da sua loja?</div>
+        <div class="slider-hint">Valor médio que cada cliente gasta por visita. Ex: 2 peças de R$ 190 = ticket médio de R$ 380.</div>
+      </div>
+      <div class="slider-val" id="v-ticket">R$ 380</div>
+    </div>
+    <input type="range" min="80" max="3000" step="20" value="380" id="s-ticket">
+    <div class="slider-range"><span>R$ 80</span><span>R$ 3.000</span></div>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn btn-primary" onclick="goStep(2)">✦ Ver o impacto na minha loja →</button>
+  </div>
+</div>
+
+<!-- ══════════ PASSO 2 ══════════ -->
+<div class="section" id="step2">
+  <div class="sec-title">Como o mecanismo funciona</div>
+  <div class="sec-sub">A cada 10 clientes que entram na sua loja, 7 postam a foto nas redes sociais. Veja o efeito em cascata:</div>
+
+  <div class="mech-card">
+    <div class="mech-label">Ciclo de viralização</div>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-icon">🛍️</div>
+        <div class="flow-num" id="f-clientes">150</div>
+        <div class="flow-label">clientes entram na loja</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">📸</div>
+        <div class="flow-num" id="f-postam">105</div>
+        <div class="flow-label">postam a foto (70%)</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">👀</div>
+        <div class="flow-num" id="f-views">52,5k</div>
+        <div class="flow-label">pessoas veem sua marca</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-icon">🛒</div>
+        <div class="flow-num" id="f-novos">630</div>
+        <div class="flow-label">novas visitas chegam</div>
+      </div>
+    </div>
+    <div class="trust-badge">
+      ✦ Post de cliente real tem 2–4× mais engajamento que anúncio pago
+    </div>
+  </div>
+
+  <div class="analogy expandable">
+    <div class="analogy-label">Como entender esses números</div>
+    <div class="exp-body collapsed" id="exp-analogy">
+      <div class="analogy-text" id="analogy-text">—</div>
+      <div class="exp-fade" id="fade-analogy"></div>
+    </div>
+    <button class="exp-toggle" onclick="toggleExp('analogy')">
+      <span id="lbl-analogy">Ver mais</span>
+      <span class="exp-arrow" id="arr-analogy">▼</span>
+    </button>
+  </div>
+
+  <!-- METODOLOGIA TRANSPARENTE -->
+  <div class="metod expandable">
+    <div class="metod-title">Como calculamos — metodologia transparente</div>
+    <div class="exp-body collapsed" id="exp-metod" style="position:relative;">
+      <div class="metod-row"><span class="metod-k">Taxa de ativação (clientes que postam)</span><span class="metod-v">70% — 7 em cada 10</span></div>
+      <div class="metod-row"><span class="metod-k">Seguidores médios por cliente</span><span class="metod-v">500 pessoas</span></div>
+      <div class="metod-row"><span class="metod-k">Taxa de clique nas postagens</span><span class="metod-v">12% — post real vs 6% de anúncio</span></div>
+      <div class="metod-row"><span class="metod-k">Taxa de conversão visita → venda</span><span class="metod-v">5% — tráfego por indicação</span></div>
+      <div class="metod-note">
+        <strong>Por que 12% de clique e 5% de conversão?</strong> Post de amiga ou conhecida não parece propaganda — o cérebro não filtra. Quem clica já chegou com intenção. Benchmarks de UGC (conteúdo gerado por usuário) mostram engajamento 2 a 4× maior que anúncio. Usamos o valor conservador da faixa.
+      </div>
+      <div class="exp-fade" id="fade-metod" style="background:linear-gradient(to bottom,transparent,#0d1208);"></div>
+    </div>
+    <button class="exp-toggle" onclick="toggleExp('metod')" style="color:#5a7a4a;">
+      <span id="lbl-metod">Ver mais</span>
+      <span class="exp-arrow" id="arr-metod">▼</span>
+    </button>
+  </div>
+
+  <div class="results-grid">
+    <div class="res-card gold">
+      <div class="res-label">Clientes postando por você</div>
+      <div class="res-val gold" id="r-postam">—</div>
+      <div class="res-desc">Embaixadoras reais — sem cachê, sem contrato, sem algoritmo</div>
+    </div>
+    <div class="res-card gold">
+      <div class="res-label">Alcance orgânico mensal</div>
+      <div class="res-val gold" id="r-alcance">—</div>
+      <div class="res-desc">Pessoas que veem sua marca por mês sem gastar nada a mais</div>
+    </div>
+    <div class="res-card">
+      <div class="res-label">Novas visitas estimadas</div>
+      <div class="res-val" id="r-visitas">—</div>
+      <div class="res-desc">12% das visualizações viram visitas (post real, não anúncio)</div>
+    </div>
+    <div class="res-card">
+      <div class="res-label">Vendas adicionais estimadas</div>
+      <div class="res-val" id="r-vendas">—</div>
+      <div class="res-desc">5% das visitas convertem — quem chega por indicação já quer comprar</div>
+    </div>
+    <div class="res-card gold" style="grid-column: span 2;">
+      <div class="res-label">Receita adicional estimada / mês</div>
+      <div class="res-val gold" id="r-receita">—</div>
+      <div class="res-desc" id="r-receita-desc">—</div>
+    </div>
+  </div>
+
+  <div class="verdict expandable">
+    <div class="verdict-label">Resumo simples</div>
+    <div class="verdict-big" id="v-big">—</div>
+    <div class="exp-body collapsed" id="exp-verdict" style="position:relative;">
+      <div class="verdict-text" id="v-text">—</div>
+      <div class="exp-fade exp-fade-gold" id="fade-verdict"></div>
+    </div>
+    <button class="exp-toggle" onclick="toggleExp('verdict')">
+      <span id="lbl-verdict">Ver mais</span>
+      <span class="exp-arrow" id="arr-verdict">▼</span>
+    </button>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn btn-secondary" onclick="goStep(1)">← Voltar</button>
+    <button class="btn btn-primary" onclick="goStep(3)">✦ Ver comparativo completo →</button>
+  </div>
+</div>
+
+<!-- ══════════ PASSO 3 ══════════ -->
+</div><!-- /container -->
+<div class="container-wide">
+<div class="section" id="step3">
+  <div class="sec-title">O que você recebe por cada real investido</div>
+  <div class="sec-sub">Comparamos a Viralize Luxo com as duas formas mais usadas de marketing no varejo. Os números são baseados na sua loja.</div>
+
+  <div class="compare-grid">
+    <!-- META ADS -->
+    <div class="compare-col">
+      <div class="compare-badge badge-dim">Meta Ads</div>
+      <div class="compare-name">Tráfego pago</div>
+      <div class="compare-price" id="cp-ads-price">R$ —<span>/mês</span></div>
+      <div class="compare-row"><span class="row-key">Alcance</span><span class="row-val neu" id="cp-ads-alcance">—</span></div>
+      <div class="compare-row"><span class="row-key">Custo por pessoa</span><span class="row-val bad" id="cp-ads-cpp">—</span></div>
+      <div class="compare-row"><span class="row-key">Confiança do público</span><span class="row-val bad">Baixa</span></div>
+      <div class="compare-row"><span class="row-key">Se parar de pagar</span><span class="row-val bad">Some tudo</span></div>
+      <div class="compare-row"><span class="row-key">Conteúdo gerado</span><span class="row-val bad">Nenhum</span></div>
+      <div class="compare-row"><span class="row-key">Cresce com o tempo</span><span class="row-val bad">Não</span></div>
+    </div>
+
+    <!-- INFLUENCER -->
+    <div class="compare-col">
+      <div class="compare-badge badge-dim">Influencer</div>
+      <div class="compare-name">Contrato mensal</div>
+      <div class="compare-price">R$ 3.500<span>/mês</span></div>
+      <div class="compare-row"><span class="row-key">Alcance</span><span class="row-val neu">~18 mil pessoas</span></div>
+      <div class="compare-row"><span class="row-key">Custo por pessoa</span><span class="row-val bad">R$ 0,19</span></div>
+      <div class="compare-row"><span class="row-key">Confiança do público</span><span class="row-val neu">Média</span></div>
+      <div class="compare-row"><span class="row-key">Se parar de pagar</span><span class="row-val bad">Some tudo</span></div>
+      <div class="compare-row"><span class="row-key">Conteúdo gerado</span><span class="row-val neu">1–3 posts</span></div>
+      <div class="compare-row"><span class="row-key">Cresce com o tempo</span><span class="row-val bad">Não</span></div>
+    </div>
+
+    <!-- VIRALIZE LUXO -->
+    <div class="compare-col winner">
+      <div class="compare-badge badge-gold">✦ Viralize Luxo</div>
+      <div class="compare-name">Plano Premium</div>
+      <div class="compare-price">R$ 497,90<span>/mês</span></div>
+      <div class="compare-row"><span class="row-key">Alcance base</span><span class="row-val good" id="cp-vl-alcance">—</span></div>
+      <div class="compare-row"><span class="row-key">Custo por pessoa</span><span class="row-val good" id="cp-vl-cpp">—</span></div>
+      <div class="compare-row"><span class="row-key">Confiança do público</span><span class="row-val good">Alta — cliente real</span></div>
+      <div class="compare-row"><span class="row-key">Se parar de pagar</span><span class="row-val good">Posts ficam</span></div>
+      <div class="compare-row"><span class="row-key">Conteúdo gerado</span><span class="row-val good" id="cp-vl-posts">—</span></div>
+      <div class="compare-row"><span class="row-key">Ativações incluídas</span><span class="row-val good">até 200 imagens</span></div>
+      <div class="compare-row"><span class="row-key">Cresce com o tempo</span><span class="row-val good">Sim, exponencial</span></div>
+
+      <!-- POTENCIAL 70K -->
+      <div class="potencial-box">
+        <div class="pot-label">Potencial máximo do plano Premium</div>
+        <div class="pot-num">70.000</div>
+        <div class="pot-desc">visualizações potenciais por mês — com as <strong>200 ativações incluídas</strong> no plano</div>
+        <div class="pot-calc">
+          <div class="pot-calc-item">
+            <div class="pot-calc-val">200</div>
+            <div class="pot-calc-key">ativações (imagens)</div>
+          </div>
+          <div class="pot-calc-item">
+            <div class="pot-calc-val">×&nbsp;500</div>
+            <div class="pot-calc-key">seguidores por cliente</div>
+          </div>
+          <div class="pot-calc-item">
+            <div class="pot-calc-val">= 70k</div>
+            <div class="pot-calc-key">visualizações reais</div>
+          </div>
+        </div>
+        <div class="cpp-destaque">
+          <span class="cpp-k">Custo por visualização qualificada</span>
+          <span class="cpp-v">R$ 0,007</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="verdict expandable">
+    <div class="verdict-label">A conta simples</div>
+    <div class="verdict-big" id="v2-big">—</div>
+    <div class="exp-body collapsed" id="exp-verdict2" style="position:relative;">
+      <div class="verdict-text" id="v2-text">—</div>
+      <div class="exp-fade exp-fade-gold" id="fade-verdict2"></div>
+    </div>
+    <button class="exp-toggle" onclick="toggleExp('verdict2')">
+      <span id="lbl-verdict2">Ver mais</span>
+      <span class="exp-arrow" id="arr-verdict2">▼</span>
+    </button>
+  </div>
+
+  <div class="analogy expandable">
+    <div class="analogy-label">Por que "orgânico" vale mais do que anúncio?</div>
+    <div class="exp-body collapsed" id="exp-organico" style="position:relative;">
+      <div class="analogy-text">Quando você vê um anúncio no Instagram, sabe que é propaganda — e automaticamente desconfia. Quando <strong>sua amiga posta uma foto usando uma peça e marca a loja</strong>, você confia porque ela não ganhou nada para fazer isso. Ela comprou porque gostou. Esse nível de confiança não existe em anúncio pago — e é exatamente o que a Viralize Luxo ativa para a sua loja, todo mês, de forma automática.</div>
+      <div class="exp-fade" id="fade-organico"></div>
+    </div>
+    <button class="exp-toggle" onclick="toggleExp('organico')">
+      <span id="lbl-organico">Ver mais</span>
+      <span class="exp-arrow" id="arr-organico">▼</span>
+    </button>
+  </div>
+
+  <div class="cta-block">
+    <h3>Pronto para ativar isso na sua loja?</h3>
+    <p>Plano Premium por R$ 497,90/mês — até 200 ativações, domínio personalizado, analytics avançado. Sem fidelidade.</p>
+    <a class="cta-btn" href="https://wa.me/5511912849223?text=Ol%C3%A1!%20Simulei%20o%20impacto%20da%20Viralize%20Luxo%20na%20minha%20loja%20e%20quero%20ativar%20o%20plano%20Premium." target="_blank" rel="noopener">Quero ativar na minha loja →</a>
+  </div>
+
+  <div class="nav-btns">
+    <button class="btn btn-secondary" onclick="goStep(2)">← Voltar</button>
+  </div>
+</div>
+</div><!-- /container-wide -->
+
+<script>
+  const VL = 497.90;
+  const SHARE = 0.70;        // 70% dos clientes postam
+  const VIEWS = 500;         // seguidores médios por cliente
+  const CLICK = 0.12;        // 12% clique — post real vs 6% anúncio
+  const CONV = 0.05;         // 5% conversão — tráfego por indicação
+  const CPM = 38;            // CPM médio Meta Ads Brasil moda 2026
+
+  function fmt(n) { return Math.round(n).toLocaleString('pt-BR'); }
+  function fmtK(n) {
+    const r = Math.round(n);
+    if (r >= 1000000) return (Math.round(r / 100000) / 10).toLocaleString('pt-BR') + 'M';
+    if (r >= 1000) return (Math.round(r / 100) / 10).toLocaleString('pt-BR') + 'k';
+    return fmt(r);
+  }
+  function fmtR(n) { return 'R$ ' + Math.round(n).toLocaleString('pt-BR'); }
+  function fmtC(n) {
+    if (n < 0.001) return 'R$ 0,00' + Math.round(n * 10000);
+    if (n < 0.01) return 'R$ 0,00' + Math.round(n * 1000);
+    if (n < 1) return 'R$ 0,' + String(Math.round(n * 100)).padStart(2, '0');
+    if (n < 1000) return 'R$ ' + n.toFixed(2).replace('.', ',');
+    return fmtR(n);
+  }
+
+  let currentStep = 1;
+
+  function toggleExp(id) {
+    const body  = document.getElementById('exp-' + id);
+    const fade  = document.getElementById('fade-' + id);
+    const lbl   = document.getElementById('lbl-' + id);
+    const arr   = document.getElementById('arr-' + id);
+    const open  = body.classList.contains('expanded');
+    if (open) {
+      body.classList.replace('expanded', 'collapsed');
+      if (fade) fade.classList.remove('hidden');
+      lbl.textContent = 'Ver mais';
+      arr.classList.remove('open');
+    } else {
+      body.classList.replace('collapsed', 'expanded');
+      if (fade) fade.classList.add('hidden');
+      lbl.textContent = 'Ver menos';
+      arr.classList.add('open');
+    }
+  }
+
+  function goStep(n) {
+    document.getElementById('step' + currentStep).classList.remove('visible');
+    document.querySelectorAll('.step').forEach((el, i) => el.classList.toggle('active', i === n - 1));
+    currentStep = n;
+    document.getElementById('step' + n).classList.add('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    calc();
+  }
+
+  function calc() {
+    const cl  = +document.getElementById('s-clientes').value;
+    const ads = +document.getElementById('s-ads').value;
+    const tk  = +document.getElementById('s-ticket').value;
+
+    // Sliders labels
+    document.getElementById('v-clientes').textContent = fmt(cl);
+    document.getElementById('v-ads').textContent = ads === 0 ? 'R$ 0' : fmtR(ads);
+    document.getElementById('v-ticket').textContent = fmtR(tk);
+
+    // Cálculos base
+    const post = Math.round(cl * SHARE);
+    const alc  = post * VIEWS;
+    const vis  = Math.round(alc * CLICK);
+    const vnd  = Math.round(vis * CONV);
+    const rec  = vnd * tk;
+    const cpp  = VL / Math.max(alc, 1);
+
+    // FLUXO
+    document.getElementById('f-clientes').textContent = fmt(cl);
+    document.getElementById('f-postam').textContent   = fmt(post);
+    document.getElementById('f-views').textContent    = fmtK(alc);
+    document.getElementById('f-novos').textContent    = fmt(vis);
+
+    // ANALOGIA
+    document.getElementById('analogy-text').innerHTML =
+      `Imagine que cada uma das <strong>${fmt(post)} clientes que vão postar</strong> tem em média 500 amigos e seguidores nas redes sociais. Quando ela publica uma foto profissional com a sua marca, todos os 500 veem — e a maioria é do mesmo perfil socioeconômico, seu público ideal. É diferente de um anúncio: a curiosidade de ver uma pessoa real, conhecida, com uma imagem de alto padrão faz o engajamento ser 2 a 4 vezes maior. Isso é <strong>publicidade gratuita e confiável</strong>, sem pagar cachê nem aparecer como propaganda.`;
+
+    // RESULTADOS
+    document.getElementById('r-alcance').textContent  = fmtK(alc) + ' pessoas';
+    document.getElementById('r-postam').textContent   = fmt(post) + ' clientes';
+    document.getElementById('r-visitas').textContent  = fmt(vis) + ' visitas';
+    document.getElementById('r-vendas').textContent   = fmt(vnd) + ' vendas';
+    document.getElementById('r-receita').textContent  = fmtR(rec) + '/mês';
+    document.getElementById('r-receita-desc').innerHTML =
+      `${fmt(vnd)} vendas × ticket médio de ${fmtR(tk)} = <strong>${fmtR(rec)}</strong>`;
+
+    // VEREDICTO
+    document.getElementById('v-big').textContent =
+      fmtK(alc) + ' olhos na sua marca — todo mês — sem custo extra.';
+    document.getElementById('v-text').innerHTML =
+      `Com <strong>${fmt(cl)} clientes/mês</strong>, <strong>${fmt(post)} postam nas redes</strong> (70%). Cada post — imagem profissional de alto padrão — alcança 500 pessoas do mesmo perfil. Resultado: <strong>${fmtK(alc)} visualizações</strong> por mês. Com taxa de clique de 12% (post real, não anúncio), chegam <strong>${fmt(vis)} novas visitas</strong>. Dessas, 5% compram — tráfego por indicação já chega com intenção. São <strong>${fmt(vnd)} vendas adicionais</strong> gerando <strong>${fmtR(rec)}/mês</strong> em receita extra.`;
+
+    // COMPARATIVO
+    const refAds   = ads > 0 ? ads : 3000;
+    const metaAlc  = Math.round((refAds / CPM) * 1000);
+    const metaCpp  = refAds / Math.max(metaAlc, 1);
+
+    document.getElementById('cp-ads-price').innerHTML  = fmtR(refAds) + '<span>/mês</span>';
+    document.getElementById('cp-ads-alcance').textContent = fmtK(metaAlc) + ' impressões';
+    document.getElementById('cp-ads-cpp').textContent  = fmtC(metaCpp);
+    document.getElementById('cp-vl-alcance').textContent = fmtK(alc) + ' pessoas';
+    document.getElementById('cp-vl-cpp').textContent   = fmtC(cpp);
+    document.getElementById('cp-vl-posts').textContent = fmt(post) + ' posts reais';
+
+    const eco = refAds - VL;
+    document.getElementById('v2-big').textContent =
+      alc > metaAlc
+        ? fmtK(alc) + ' de alcance real por R$ 497,90 — contra ' + fmtK(metaAlc) + ' de impressões no Meta Ads.'
+        : '70.000 visualizações potenciais por R$ 497,90 — com as 200 ativações do plano Premium.';
+
+    document.getElementById('v2-text').innerHTML =
+      `Custo por pessoa alcançada: <strong>${fmtC(cpp)}</strong> na Viralize Luxo — contra <strong>${fmtC(metaCpp)}</strong> no Meta Ads, com nível de confiança incomparável. ` +
+      `Com as <strong>200 ativações incluídas no plano Premium</strong>, o potencial é de <strong>70.000 visualizações/mês</strong> — a R$ 0,007 por visualização qualificada. ` +
+      (eco > 0
+        ? `Você ainda <strong>economiza ${fmtR(eco)}/mês</strong> comparado ao que gasta hoje em anúncios.`
+        : `E o conteúdo orgânico gerado permanece nas redes mesmo que você pause o plano — algo que nenhum anúncio oferece.`);
+  }
+
+  ['s-clientes', 's-ads', 's-ticket'].forEach(id => {
+    document.getElementById(id).addEventListener('input', calc);
+  });
+
+  calc();
+</script>
+</body>
+</html>
