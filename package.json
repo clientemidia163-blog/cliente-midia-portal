@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.75",
+    "@ai-sdk/groq": "^3.0.39",
     "@fal-ai/client": "^1.10.1",
     "@portabletext/react": "^3.1.0",
     "@sanity/client": "^6.21.3",
