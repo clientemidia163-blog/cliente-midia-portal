@@ -108,7 +108,7 @@ async function notifyByEmail(title: string, pillar: string, studioUrl: string) {
   try {
     await resend.emails.send({
       from: FROM_EMAIL,
-      to: "grupodigital163@gmail.com",
+      to: "clientemidia163@gmail.com",
       subject: `[Rascunho] Novo artigo gerado — ${title}`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
