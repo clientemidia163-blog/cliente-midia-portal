@@ -38,5 +38,15 @@ export const PILLARS_SEED = [
       "O futuro da categoria. Predições. Entrevistas com lojistas pioneiros. A construção do novo padrão do varejo.",
     longDescription:
       "Este pilar olha pra frente. Manifestos secundários, predições, entrevistas com as primeiras lojistas que adotaram o modelo, ensaios sobre o futuro do varejo premium brasileiro. O território onde a categoria se transforma em movimento."
+  },
+  {
+    slug: "metodo",
+    title: "Método",
+    order: 5,
+    numeral: "v.",
+    tagline:
+      "Como implementar o modelo Cliente Mídia™. Etapas, ferramentas, rituais e os erros mais comuns de quem começa errado.",
+    longDescription:
+      "Este pilar é o manual de campo da categoria. Enquanto os outros pilares explicam o problema, definem a solução e apresentam a evidência, o Método mostra o caminho. Etapa por etapa, decisão por decisão — o que fazer na primeira semana, no primeiro mês e no primeiro ano de implantação do modelo Cliente Mídia™ no seu varejo."
   }
 ];

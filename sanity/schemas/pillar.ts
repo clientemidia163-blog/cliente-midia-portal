@@ -22,8 +22,8 @@ export const pillar = defineType({
       name: "order",
       title: "Ordem (i, ii, iii, iv)",
       type: "number",
-      description: "Ordem de aparição no portal (1 a 4)",
-      validation: (r) => r.required().min(1).max(4)
+      description: "Ordem de aparição no portal (1 a 5)",
+      validation: (r) => r.required().min(1).max(5)
     }),
     defineField({
       name: "numeral",

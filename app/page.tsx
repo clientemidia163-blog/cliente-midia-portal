@@ -6,7 +6,8 @@ const PILLARS = [
   { num: "i.", title: "Diagnóstico", desc: "O problema do alcance alugado. O custo real do CAC. A jaula fiscal do Instagram. Por que o modelo antigo está rachando.", count: "04 artigos", href: "/diagnostico" },
   { num: "ii.", title: "Categoria", desc: "O que é Cliente Mídia™. As diferenças entre UGC, influencer e Cliente Mídia. Os pilares da distribuição orgânica.", count: "04 artigos", href: "/categoria" },
   { num: "iii.", title: "Pesquisa", desc: "Relatórios, benchmarks, estudos de caso, dados primários do varejo premium brasileiro em 2026.", count: "03 artigos", href: "/pesquisa" },
-  { num: "iv.", title: "Movimento", desc: "O futuro da categoria. Predições. Entrevistas com lojistas pioneiros. A construção do novo padrão do varejo.", count: "03 artigos", href: "/movimento" }
+  { num: "iv.", title: "Movimento", desc: "O futuro da categoria. Predições. Entrevistas com lojistas pioneiros. A construção do novo padrão do varejo.", count: "03 artigos", href: "/movimento" },
+  { num: "v.", title: "Método", desc: "Como implementar o modelo Cliente Mídia™. Etapas, ferramentas, rituais e os erros mais comuns de quem começa errado.", count: "Em breve", href: "/metodo" }
 ];
 
 const ARTICLES = [
@@ -72,14 +73,14 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1240px]">
           <div className="mb-20 text-center">
             <div className="mb-5">
-              <span className="eyebrow">Os quatro pilares editoriais</span>
+              <span className="eyebrow">Os cinco pilares editoriais</span>
             </div>
             <h2 className="font-serif text-4xl font-medium leading-tight tracking-tight md:text-5xl">
               Onde uma nova categoria é{" "}
               <em className="italic text-gold-soft">documentada</em>.
             </h2>
           </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
             {PILLARS.map((p) => (
               <Link
                 key={p.title}
