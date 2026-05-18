@@ -117,7 +117,7 @@ export async function writeArticle(
   const prompt = buildPrompt(pillarSlug, research);
 
   const { text } = await generateText({
-    model: google("gemini-1.5-flash"),
+    model: google("gemini-1.5-flash-latest"),
     prompt,
     maxOutputTokens: 8000,
   });
