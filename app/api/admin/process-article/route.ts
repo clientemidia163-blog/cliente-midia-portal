@@ -267,7 +267,11 @@ async function publishDraft(
   if (heroImage) doc.heroImage = heroImage;
   else if (draft.heroImage) doc.heroImage = draft.heroImage;
 
-  await writeClient.transaction().createOrReplace(doc).delete(draft._id).commit();
+  await writeClient
+    .transaction()
+    .createOrReplace(doc as { _id: string; _type: string; [key: string]: unknown })
+    .delete(draft._id)
+    .commit();
 }
 
 // ─── Main handler ──────────────────────────────────────────────────────────────
