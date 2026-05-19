@@ -35,7 +35,7 @@ export function Footer() {
             title="Recursos"
             items={[
               { label: "✦ Simulador da loja", href: "/simulador", accent: true },
-              { label: "Relatório 2026", href: "/relatorio" },
+              { label: "Casos & Resultados", href: "/casos" },
               { label: "Glossário", href: "/glossario" },
               { label: "Imprensa", href: "/imprensa" }
             ]}
