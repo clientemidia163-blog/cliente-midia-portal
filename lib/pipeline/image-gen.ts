@@ -1,11 +1,9 @@
 import { fal } from "@fal-ai/client";
 
 const STYLE_SUFFIX = `
-Color palette: deep black (#0B0B0B) dominant background, warm gold (#C9A35A) accent lighting, cream and sepia highlights.
-Style: luxury premium editorial photography, cinematic quality, Brazilian premium retail aesthetic, magazine campaign.
-Lighting: dramatic, warm, directional — gold rim lighting on subjects.
-Format: 16:9 landscape, cinematic composition.
-Restrictions: no text overlay, no logos, no watermarks, no stock photo look.`;
+Style: high-end editorial photography, photorealistic, natural lighting, magazine quality. Brazilian premium retail context.
+Composition: 16:9 landscape, professional framing, depth of field.
+Restrictions: no text overlay, no logos, no watermarks, no cheesy stock photo look.`;
 
 async function buildAndGenerate(visualConcept: string): Promise<{ url: string; buffer: Buffer }> {
   const prompt = `${visualConcept}${STYLE_SUFFIX}`;
