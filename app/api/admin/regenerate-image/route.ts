@@ -65,7 +65,7 @@ ${article.fullText}
 REGRAS PARA O CONCEITO VISUAL:
 - Baseado no conteúdo real do artigo, não em generalidades
 - Descreva uma cena concreta: quem está na cena, o que está fazendo, onde está, qual emoção transmite
-- Pode ter pessoas reais (consumidoras, lojistas, estilistas) em situações do varejo premium brasileiro
+- Pode ter pessoas reais em situações do varejo premium brasileiro — INCLUA AMBOS OS GÊNEROS: boutiques femininas (mulheres comprando moda) e masculinas (homens comprando ternos, camisas, etc.) fazem parte do modelo Cliente Mídia™
 - Deve capturar o CONFLITO ou TRANSFORMAÇÃO central do artigo (ex: dependência vs liberdade, custo vs resultado, antigo vs novo modelo)
 - Cinematográfico, editorial, fotorrealista
 - Sem texto, logos ou elementos genéricos de stock photo

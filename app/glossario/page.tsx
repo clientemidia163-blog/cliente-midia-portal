@@ -12,7 +12,7 @@ const TERMS = [
   {
     term: "Cliente Mídia™",
     definition:
-      "Cliente que, além de comprar, torna-se canal ativo de distribuição orgânica da marca — gerando alcance, credibilidade e novas vendas a partir de sua própria rede. Não é influenciadora. Não é embaixadora contratada. É uma compradora real que escolhe compartilhar porque a experiência valeu o compartilhamento."
+      "Cliente que, além de comprar, torna-se canal ativo de distribuição orgânica da marca — gerando alcance, credibilidade e novas vendas a partir de sua própria rede. Não é influenciador(a). Não é embaixador(a) contratado(a). É um comprador real que escolhe compartilhar porque a experiência valeu o compartilhamento. O modelo se aplica a boutiques femininas, masculinas e mistas."
   },
   {
     term: "Alcance Orgânico",

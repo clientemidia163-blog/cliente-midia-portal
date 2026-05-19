@@ -31,15 +31,15 @@ async function buildAndGenerate(visualConcept: string): Promise<{ url: string; b
 // Fallback para chamadas legadas sem visualConcept
 const PILLAR_FALLBACK: Record<string, string> = {
   diagnostico:
-    "Brazilian luxury boutique owner looking worried at a laptop showing rising ad costs, Meta Ads dashboard with red numbers, dark premium office atmosphere",
+    "Brazilian luxury boutique owner — a focused man or woman — reviewing rising ad costs on a laptop, Meta Ads dashboard with red numbers, dark premium store environment, cinematic lighting",
   categoria:
-    "Elegant Brazilian woman in a luxury boutique sharing a photo on her smartphone, golden network of glowing connections spreading from her phone to multiple follower icons around her, warm dark background",
+    "A stylish Brazilian shopper in a premium boutique — could be a woman in a dress boutique or a man in a menswear store — smiling at their smartphone while a golden network of glowing connections spreads from the phone to multiple people around them, warm cinematic atmosphere",
   pesquisa:
-    "Data analyst in a luxury setting reviewing charts that show organic reach outperforming paid ads, graphs with gold and black aesthetic, premium office environment",
+    "A boutique owner in a luxury retail setting reviewing a chart showing organic reach outperforming paid ads, clean desk with gold and dark aesthetic, confident expression, gender-neutral professional environment",
   movimento:
-    "Modern Brazilian luxury retail store, stylish owner confidently looking toward the horizon, golden light streaming through large windows, forward-looking atmosphere",
+    "Modern Brazilian luxury retail store — a well-dressed owner, man or woman — confidently looking toward the horizon through large display windows filled with premium fashion, golden light, forward-looking atmosphere",
   metodo:
-    "Premium retail consultant showing a structured step-by-step framework on a sleek presentation to a boutique owner, elegant boardroom, gold and black aesthetic",
+    "A premium retail consultant presenting a structured framework to a boutique owner at a sleek table, both could be male or female, elegant boardroom with dark wood and gold accents, collaborative and focused mood",
 };
 
 export async function generateCoverImage(

@@ -46,7 +46,7 @@ FORMATO DA NEWSLETTER: 3 elementos semanais
 2. UM INSIGHT — análise estratégica de 2-3 parágrafos conectada ao dado, sempre com ângulo do modelo Cliente Mídia™
 3. UMA PERGUNTA — provocação reflexiva personalíssima para o leitor sobre a sua própria loja
 
-TOM: direto, inteligente, nunca genérico. O leitor é uma lojista ocupada — cada palavra precisa valer.
+TOM: direto, inteligente, nunca genérico. O leitor é um lojista ou lojista de moda premium — boutiques femininas, masculinas ou mistas. Cada palavra precisa valer.
 
 CONTEXTO DE PESQUISA RECENTE (use se relevante):
 ${researchContext || "Sem dados externos desta semana — use conhecimento geral sobre varejo premium BR 2026."}

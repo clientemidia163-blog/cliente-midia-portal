@@ -34,7 +34,7 @@ const SECTIONS = [
     title: "O que o anúncio não compra",
     paragraphs: [
       "Quando você investe em tráfego pago, você compra impressões e cliques. Isso é tudo.",
-      "Você não está comprando relacionamento. Não está comprando memória de marca. Não está comprando o tipo de conexão que faz uma cliente te indicar para três amigas no grupo de WhatsApp.",
+      "Você não está comprando relacionamento. Não está comprando memória de marca. Não está comprando o tipo de conexão que faz um cliente indicar sua loja para contatos no WhatsApp.",
       "Pesquisa do EmbedSocial: **92% dos consumidores confiam mais em recomendações de outros usuários** do que em anúncios tradicionais.",
       "Enquanto você investe cada vez mais para aparecer para pessoas que desconfiam do que você diz, existe um canal inteiro — construído sobre confiança real — que a maioria das lojas está ignorando."
     ]
@@ -44,7 +44,7 @@ const SECTIONS = [
     title: "A saída tem nome",
     paragraphs: [
       "**Cliente Mídia™** é o nome de uma nova categoria no varejo premium brasileiro. É o modelo em que os próprios clientes da loja se tornam canais ativos de distribuição da marca — de forma orgânica, espontânea e contínua.",
-      "Não é influencer. Não é UGC contratado. Não é campanha. É a sua cliente, que comprou na sua loja, se apaixonou pela experiência — e quis mostrar isso para o mundo.",
+      "Não é influencer. Não é UGC contratado. Não é campanha. É o seu cliente — homem ou mulher — que comprou na sua loja, se apaixonou pela experiência e quis mostrar isso para o mundo.",
       "Não é uma campanha. É uma infraestrutura. Não é uma ação de marketing. É uma nova forma de crescer. Não é o futuro. Está acontecendo agora."
     ]
   }

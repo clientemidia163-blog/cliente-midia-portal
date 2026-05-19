@@ -54,7 +54,10 @@ function buildPrompt(pillarSlug: string, research: ResearchResult[]): string {
   return `Você é o editor-chefe do portal clientemidia.com.br — autoridade editorial sobre a categoria Cliente Mídia™ no varejo premium brasileiro.
 
 MISSÃO DO PORTAL:
-Educar donos de lojas de moda premium sobre como transformar seus próprios clientes em canais orgânicos de distribuição da marca. O portal funciona como funil de consciência: o leitor nunca deve se sentir vendido — ele deve chegar à conclusão de que o modelo Cliente Mídia™ é a resposta lógica ao problema dele.
+Educar donos e donas de lojas de moda premium — boutiques femininas, masculinas e mistas — sobre como transformar seus próprios clientes em canais orgânicos de distribuição da marca. O portal funciona como funil de consciência: o leitor nunca deve se sentir vendido — ele deve chegar à conclusão de que o modelo Cliente Mídia™ é a resposta lógica ao problema dele.
+
+PÚBLICO DO VAREJO PREMIUM BRASILEIRO:
+O modelo Cliente Mídia™ serve tanto lojas femininas quanto masculinas. Ao criar exemplos e cenários, inclua naturalmente os dois públicos — a compradora de moda feminina E o comprador de moda masculina, a lojista E o lojista. Use linguagem inclusiva: "clientes" (plural neutro), "quem compra", "o/a lojista" quando necessário. Evite exemplos exclusivamente femininos.
 
 PILAR DESTE ARTIGO: ${pillarSlug.toUpperCase()}
 OBJETIVO DO PILAR: ${context}
@@ -81,7 +84,7 @@ RETORNE APENAS UM JSON VÁLIDO com esta estrutura exata (sem markdown, sem \`\`\
   "readingTime": 10,
   "seoKeyword": "keyword principal do artigo",
   "metaDescription": "Descrição SEO de 130-155 chars com CTA implícito.",
-  "visualConcept": "Descrição detalhada em inglês da imagem de capa ideal para este artigo. Deve ser uma cena que comunica o conceito central do artigo só de olhar. Pode ter pessoas em situações reais do varejo premium. Exemplo: 'Elegant Brazilian woman in a luxury boutique, smiling at her smartphone while a golden network of glowing connections spreads from her phone to multiple followers icons around her, warm dark background with gold accents, cinematic editorial style, no text'. Seja específico e criativo — descreva pessoas, ambiente, ação, emoção.",
+  "visualConcept": "Descrição detalhada em inglês da imagem de capa ideal para este artigo. Deve ser uma cena que comunica o conceito central do artigo só de olhar. Inclua pessoas de ambos os gêneros quando fizer sentido — boutiques femininas E masculinas fazem parte do varejo premium. Exemplos: 'A Brazilian boutique owner reviewing rising ad costs on a laptop', 'A stylish man in a premium menswear store sharing content on his phone', 'A woman and a man choosing premium fashion in an upscale boutique'. Seja específico e criativo — descreva pessoas, ambiente, ação, emoção, sem texto na imagem.",
   "secondaryVisualConcept": "Descrição detalhada em inglês de uma segunda imagem que complementa a capa, explorando um ângulo diferente do mesmo tema. Para artigos sobre dados: pode mostrar contraste entre o modelo antigo e o novo. Para artigos sobre método: pode mostrar o resultado final, a transformação.",
   "sections": [
     { "type": "paragraph", "text": "parágrafo de abertura impactante" },

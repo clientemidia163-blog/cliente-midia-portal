@@ -12,8 +12,8 @@ const PILLARS = [
 
 const ARTICLES = [
   { tag: "Categoria", title: "Cliente Mídia™ — a definição oficial.", excerpt: "A nomenclatura, a infraestrutura e os limites da categoria que está sendo construída no varejo premium brasileiro.", meta: "08 min · Maio 2026" },
-  { tag: "Diagnóstico", title: "O verdadeiro custo do CAC no varejo de moda em 2026.", excerpt: "Uma análise das margens, da inflação dos leilões e do que cada nova cliente realmente custa hoje no Brasil.", meta: "10 min · Maio 2026" },
-  { tag: "Pesquisa", title: "Por que sua melhor cliente nunca foi seu anúncio.", excerpt: "O boca a boca digital responde por 33% das descobertas de marca. Os anúncios? Custam 11 vezes mais por conversão.", meta: "14 min · Maio 2026" },
+  { tag: "Diagnóstico", title: "O verdadeiro custo do CAC no varejo de moda em 2026.", excerpt: "Uma análise das margens, da inflação dos leilões e do que cada novo cliente realmente custa hoje no Brasil.", meta: "10 min · Maio 2026" },
+  { tag: "Pesquisa", title: "Por que seu melhor cliente nunca foi seu anúncio.", excerpt: "O boca a boca digital responde por 33% das descobertas de marca. Os anúncios? Custam 11 vezes mais por conversão.", meta: "14 min · Maio 2026" },
   { tag: "Categoria", title: "UGC, influencer ou Cliente Mídia? As três distinções que ninguém faz.", excerpt: "Por que esses três modelos foram confundidos durante uma década — e por que essa confusão custou bilhões ao varejo.", meta: "09 min · Maio 2026" },
   { tag: "Movimento", title: "A nova infraestrutura do varejo premium brasileiro.", excerpt: "O que muda quando a distribuição da marca deixa de ser comprada e passa a ser cultivada na própria base de clientes.", meta: "16 min · Maio 2026" },
   { tag: "Diagnóstico", title: "A reforma tributária e o novo piso dos Meta Ads.", excerpt: "O impacto permanente do PIS/COFINS e ISS sobre o custo da mídia paga — e o que isso significa para sua margem.", meta: "07 min · Maio 2026" }

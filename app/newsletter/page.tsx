@@ -109,7 +109,7 @@ export default function NewsletterPage() {
                   que em anúncios · EmbedSocial 2024
                 </p>
                 <p className="font-serif text-sm italic text-cream-warm leading-relaxed border-l-2 border-gold pl-3">
-                  Sua melhor campanha nunca foi o anúncio — foi a cliente que indicou.
+                  Sua melhor campanha nunca foi o anúncio — foi o cliente que indicou.
                 </p>
               </div>
 

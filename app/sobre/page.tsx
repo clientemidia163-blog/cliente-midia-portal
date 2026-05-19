@@ -44,9 +44,9 @@ export default function SobrePage() {
           </div>
           <div className="space-y-6 text-base leading-relaxed text-sepia">
             <p>
-              O modelo Cliente Mídia™ é contra-intuitivo. Dizer a uma lojista
-              que os seus melhores canais de marketing já estão dentro da sua
-              base de clientes — e que ela está pagando para ignorá-los — exige
+              O modelo Cliente Mídia™ é contra-intuitivo. Dizer a um lojista ou
+              lojista que os seus melhores canais de marketing já estão dentro
+              da base de clientes — e que está pagando para ignorá-los — exige
               evidência, argumentação e tempo.
             </p>
             <p>
@@ -56,7 +56,7 @@ export default function SobrePage() {
               quem opera varejo premium no Brasil.
             </p>
             <p>
-              Quando uma lojista chega ao fim de um artigo desta plataforma e
+              Quando um lojista ou lojista chega ao fim de um artigo desta plataforma e
               pensa{" "}
               <em className="italic text-cream-warm">
                 &ldquo;isso faz sentido para o meu negócio&rdquo;

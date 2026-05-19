@@ -49,7 +49,7 @@ const CASOS = [
     problema:
       "Operação menor, com 40 clientes por mês e R$2.500 em anúncios — proporcionalmente caro para o porte. O produto era de altíssima qualidade e as clientes que compravam amavam a marca, mas nada disso se traduzia em novos clientes.",
     solucao:
-      "Por ser uma operação menor, cada cliente tem mais peso. Ativação das 12 clientes mais engajadas como Clientes Mídia com tratamento VIP e acesso antecipado a coleções. A escassez do produto premium tornou o compartilhamento aspiracional.",
+      "Por ser uma operação menor, cada cliente tem mais peso. Ativação dos 12 clientes mais engajados como Clientes Mídia com tratamento VIP e acesso antecipado a coleções. A escassez do produto premium tornou o compartilhamento aspiracional.",
     metricas: [
       { valor: "19.200", unidade: "pessoas/mês", descricao: "Alcance orgânico estimado" },
       { valor: "+35%", unidade: "", descricao: "Crescimento da base em 6 meses" },
@@ -60,7 +60,7 @@ const CASOS = [
 ];
 
 const BENCHMARKS = [
-  { valor: "350", label: "Seguidores médios de uma compradora premium brasileira" },
+  { valor: "350", label: "Seguidores médios de um comprador premium brasileiro" },
   { valor: "68%", label: "Tasa de confiança em recomendações de pessoas conhecidas" },
   { valor: "11×", label: "Menor custo por conversão vs anúncios pagos" },
   { valor: "6 meses", label: "Tempo médio para primeiros resultados mensuráveis" }

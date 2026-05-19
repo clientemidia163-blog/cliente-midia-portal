@@ -108,6 +108,8 @@ Subtítulo: ${article.subtitle}
 Resumo: ${article.excerpt}
 Pilar: ${article.pillarSlug.toUpperCase()} — ${context}
 
+PÚBLICO: O varejo premium brasileiro inclui boutiques femininas, masculinas e mistas. Use linguagem inclusiva — "clientes" (plural neutro), "quem compra", "o/a lojista". Inclua exemplos dos dois segmentos quando natural: a compradora de moda feminina E o comprador de moda masculina.
+
 CONTEÚDO ATUAL (preservar e aprofundar):
 ${article.existingText || "(sem conteúdo ainda)"}
 
@@ -164,9 +166,11 @@ Título: ${title}
 Resumo: ${excerpt}
 Contexto: ${context}
 
+IMPORTANTE: O varejo premium brasileiro inclui boutiques femininas, masculinas e mistas. As imagens podem mostrar compradores ou compradores, lojistas homens ou mulheres — inclua ambos os gêneros de forma natural conforme o tema do artigo.
+
 RETORNE APENAS UM JSON VÁLIDO:
 {
-  "visualConcept": "descrição detalhada em inglês da cena ideal para capa — pessoas reais do varejo premium em situação que comunica o tema só de olhar. Específico, cinematográfico, sem texto na imagem",
+  "visualConcept": "descrição detalhada em inglês da cena ideal para capa — pessoas reais (homens ou mulheres) do varejo premium em situação que comunica o tema só de olhar. Específico, cinematográfico, sem texto na imagem",
   "secondaryVisualConcept": "descrição em inglês de cena complementar, ângulo diferente do mesmo tema"
 }`;
 
