@@ -60,7 +60,9 @@ async function handle(req: Request) {
         pillarSlug,
         article.excerpt,
         keyThemes,
-        article.sections.length
+        article.sections.length,
+        article.visualConcept,
+        article.secondaryVisualConcept
       );
       heroBuffer = imgs.hero.buffer;
       secondaryBuffer = imgs.secondary?.buffer ?? null;

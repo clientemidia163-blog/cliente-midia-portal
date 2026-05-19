@@ -22,6 +22,8 @@ export interface GeneratedArticle {
   metaDescription: string;
   pillarSlug: string;
   sections: ArticleSection[];
+  visualConcept: string;
+  secondaryVisualConcept: string;
 }
 
 const PILLAR_CONTEXT: Record<string, string> = {
@@ -79,6 +81,8 @@ RETORNE APENAS UM JSON VÁLIDO com esta estrutura exata (sem markdown, sem \`\`\
   "readingTime": 10,
   "seoKeyword": "keyword principal do artigo",
   "metaDescription": "Descrição SEO de 130-155 chars com CTA implícito.",
+  "visualConcept": "Descrição detalhada em inglês da imagem de capa ideal para este artigo. Deve ser uma cena que comunica o conceito central do artigo só de olhar. Pode ter pessoas em situações reais do varejo premium. Exemplo: 'Elegant Brazilian woman in a luxury boutique, smiling at her smartphone while a golden network of glowing connections spreads from her phone to multiple followers icons around her, warm dark background with gold accents, cinematic editorial style, no text'. Seja específico e criativo — descreva pessoas, ambiente, ação, emoção.",
+  "secondaryVisualConcept": "Descrição detalhada em inglês de uma segunda imagem que complementa a capa, explorando um ângulo diferente do mesmo tema. Para artigos sobre dados: pode mostrar contraste entre o modelo antigo e o novo. Para artigos sobre método: pode mostrar o resultado final, a transformação.",
   "sections": [
     { "type": "paragraph", "text": "parágrafo de abertura impactante" },
     { "type": "h2", "text": "Primeiro título de seção" },
@@ -96,7 +100,8 @@ REGRAS DO JSON:
 - 3-4 pullquotes por artigo
 - 5-7 seções H2, com H3 quando necessário
 - Parágrafos ricos, entre 60-150 palavras cada
-- Não invente dados sem fonte — prefira argumentos qualitativos`;
+- Não invente dados sem fonte — prefira argumentos qualitativos
+- visualConcept e secondaryVisualConcept: OBRIGATÓRIOS, em inglês, detalhados, criativos e específicos ao conteúdo do artigo`;
 }
 
 function slugify(title: string): string {
