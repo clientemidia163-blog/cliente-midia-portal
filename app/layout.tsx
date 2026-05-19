@@ -26,6 +26,13 @@ export const metadata: Metadata = {
   },
   description:
     "Centro de autoridade da categoria Cliente Mídia™. Documentamos a transformação do varejo premium brasileiro em uma nova era de distribuição orgânica.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   openGraph: {
     title: "Cliente Mídia™ — A nova categoria do varejo premium brasileiro",
     description:

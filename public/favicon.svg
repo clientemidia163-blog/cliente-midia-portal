@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <!-- Background premium escuro -->
+  <rect width="100" height="100" fill="#0B0B0B"/>
+
+  <!-- Borda dourada fina — linguagem editorial do site -->
+  <rect x="1" y="1" width="98" height="98" fill="none" stroke="#C9A35A" stroke-width="1.5"/>
+
+  <!-- Barra de acento superior — espelha o h-px w-8 bg-gold do site -->
+  <rect x="1" y="1" width="98" height="5.5" fill="#C9A35A"/>
+
+  <!-- C — maior, itálico, âncora do monograma -->
+  <text
+    x="33"
+    y="68"
+    font-family="Georgia, 'Palatino Linotype', 'Book Antiqua', serif"
+    font-size="54"
+    font-style="italic"
+    font-weight="600"
+    fill="#C9A35A"
+    text-anchor="middle"
+  >C</text>
+
+  <!-- Separador vertical tênue -->
+  <line x1="53" y1="18" x2="53" y2="82" stroke="#C9A35A" stroke-width="0.8" opacity="0.35"/>
+
+  <!-- M — levemente menor, peso mais leve, equilíbrio óptico -->
+  <text
+    x="74"
+    y="68"
+    font-family="Georgia, 'Palatino Linotype', 'Book Antiqua', serif"
+    font-size="46"
+    font-style="italic"
+    font-weight="400"
+    fill="#C9A35A"
+    text-anchor="middle"
+  >M</text>
+
+  <!-- TM — detalhe de marca, visível a partir de 64px -->
+  <text
+    x="88"
+    y="28"
+    font-family="Georgia, serif"
+    font-size="9"
+    fill="#C9A35A"
+    opacity="0.65"
+    text-anchor="middle"
+  >™</text>
+</svg>
