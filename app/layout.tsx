@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
+import { organizationSchema, websiteSchema } from "@/lib/jsonld";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -53,6 +54,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${inter.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

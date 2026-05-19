@@ -7,6 +7,7 @@ import { PortableTextBody } from "@/components/article/PortableTextBody";
 import { SimuladorCTA } from "@/components/site/SimuladorCTA";
 import { sanityClient, urlForImage } from "@/lib/sanity";
 import { ARTICLE_BY_SLUG, ARTICLE_SLUGS } from "@/lib/queries";
+import { articleSchema, breadcrumbSchema } from "@/lib/jsonld";
 
 export const revalidate = 60;
 
@@ -40,8 +41,28 @@ export default async function ArticlePage({ params }: { params: Params }) {
 
   const heroSrc = article.heroImage ? urlForImage(article.heroImage).width(1800).url() : null;
 
+  const ldArticle = articleSchema({
+    title: article.title,
+    subtitle: article.subtitle,
+    excerpt: article.excerpt,
+    slug: params.slug,
+    publishedAt: article.publishedAt,
+    readingTime: article.readingTime,
+    seoKeyword: article.seoKeyword,
+    heroImageUrl: heroSrc ?? undefined,
+    pillarTitle: article.pillar?.title
+  });
+
+  const ldBreadcrumb = breadcrumbSchema([
+    { name: "Home", url: "https://clientemidia.com.br" },
+    { name: "Artigos", url: "https://clientemidia.com.br/artigos" },
+    { name: article.title, url: `https://clientemidia.com.br/artigos/${params.slug}` }
+  ]);
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldArticle) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldBreadcrumb) }} />
       <Header />
 
       <article className="px-8 pb-32 pt-20">

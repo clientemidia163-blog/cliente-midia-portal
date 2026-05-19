@@ -1,5 +1,6 @@
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { definedTermSetSchema } from "@/lib/jsonld";
 
 export const metadata = {
   title: "Glossário — Cliente Mídia™",
@@ -71,8 +72,13 @@ const TERMS = [
 ];
 
 export default function GlossarioPage() {
+  const ldGlossario = definedTermSetSchema(
+    TERMS.map((t) => ({ term: t.term, definition: t.definition }))
+  );
+
   return (
     <main>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldGlossario) }} />
       <Header />
 
       {/* HERO */}
