@@ -1,6 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { sanityClient, urlForImage } from "@/lib/sanity";
+import { ARTICLES_RECENT } from "@/lib/queries";
+
+export const revalidate = 60;
 
 const PILLARS = [
   { num: "i.", title: "Diagnóstico", desc: "O problema do alcance alugado. O custo real do CAC. A jaula fiscal do Instagram. Por que o modelo antigo está rachando.", count: "04 artigos", href: "/diagnostico" },
@@ -10,16 +15,11 @@ const PILLARS = [
   { num: "v.", title: "Método", desc: "Como implementar o modelo Cliente Mídia™. Etapas, ferramentas, rituais e os erros mais comuns de quem começa errado.", count: "Em breve", href: "/metodo" }
 ];
 
-const ARTICLES = [
-  { tag: "Categoria", title: "Cliente Mídia™ — a definição oficial.", excerpt: "A nomenclatura, a infraestrutura e os limites da categoria que está sendo construída no varejo premium brasileiro.", meta: "08 min · Maio 2026" },
-  { tag: "Diagnóstico", title: "O verdadeiro custo do CAC no varejo de moda em 2026.", excerpt: "Uma análise das margens, da inflação dos leilões e do que cada novo cliente realmente custa hoje no Brasil.", meta: "10 min · Maio 2026" },
-  { tag: "Pesquisa", title: "Por que seu melhor cliente nunca foi seu anúncio.", excerpt: "O boca a boca digital responde por 33% das descobertas de marca. Os anúncios? Custam 11 vezes mais por conversão.", meta: "14 min · Maio 2026" },
-  { tag: "Categoria", title: "UGC, influencer ou Cliente Mídia? As três distinções que ninguém faz.", excerpt: "Por que esses três modelos foram confundidos durante uma década — e por que essa confusão custou bilhões ao varejo.", meta: "09 min · Maio 2026" },
-  { tag: "Movimento", title: "A nova infraestrutura do varejo premium brasileiro.", excerpt: "O que muda quando a distribuição da marca deixa de ser comprada e passa a ser cultivada na própria base de clientes.", meta: "16 min · Maio 2026" },
-  { tag: "Diagnóstico", title: "A reforma tributária e o novo piso dos Meta Ads.", excerpt: "O impacto permanente do PIS/COFINS e ISS sobre o custo da mídia paga — e o que isso significa para sua margem.", meta: "07 min · Maio 2026" }
-];
+export default async function HomePage() {
+  const articles = await sanityClient
+    .fetch(ARTICLES_RECENT, { limit: 6 })
+    .catch(() => []);
 
-export default function HomePage() {
   return (
     <main>
       <Header />
@@ -127,7 +127,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SIMULADOR — ferramenta primária de conversão */}
+      {/* SIMULADOR */}
       <section className="border-b border-line-dark px-8 py-28">
         <div className="mx-auto max-w-[1240px]">
           <div className="grid items-center gap-16 md:grid-cols-[1.1fr_1fr]">
@@ -166,7 +166,6 @@ export default function HomePage() {
               </Link>
             </div>
 
-            {/* Card visual do simulador — mockup leve */}
             <div className="relative">
               <div className="relative overflow-hidden border border-gold/40 bg-gradient-to-br from-[#1a1612] to-ink p-8 md:p-10">
                 <div className="absolute inset-3 border border-gold-deep/30" />
@@ -175,18 +174,14 @@ export default function HomePage() {
                     Passo 1 de 3 · Sua loja
                   </div>
                   <div className="mb-8">
-                    <div className="mb-2 text-[13px] text-cream-warm">
-                      Clientes/mês na sua loja
-                    </div>
+                    <div className="mb-2 text-[13px] text-cream-warm">Clientes/mês na sua loja</div>
                     <div className="mb-4 font-serif text-4xl text-gold md:text-[44px]">150</div>
                     <div className="h-[3px] w-full overflow-hidden rounded-full bg-line-dark">
                       <div className="h-full w-[22%] rounded-full bg-gold" />
                     </div>
                   </div>
                   <div className="mb-8">
-                    <div className="mb-2 text-[13px] text-cream-warm">
-                      Gasto em anúncios/mês
-                    </div>
+                    <div className="mb-2 text-[13px] text-cream-warm">Gasto em anúncios/mês</div>
                     <div className="mb-4 font-serif text-4xl text-gold md:text-[44px]">R$ 3.000</div>
                     <div className="h-[3px] w-full overflow-hidden rounded-full bg-line-dark">
                       <div className="h-full w-[18%] rounded-full bg-gold" />
@@ -211,41 +206,82 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ARTICLES */}
-      <section className="px-8 py-28">
-        <div className="mx-auto max-w-[1240px]">
-          <div className="mb-16 flex items-end justify-between border-b border-line-dark pb-12">
-            <div>
-              <div className="mb-5">
-                <span className="eyebrow">Edição inaugural</span>
+      {/* ARTICLES — busca do Sanity */}
+      {articles.length > 0 && (
+        <section className="px-8 py-28">
+          <div className="mx-auto max-w-[1240px]">
+            <div className="mb-16 flex items-end justify-between border-b border-line-dark pb-12">
+              <div>
+                <div className="mb-5">
+                  <span className="eyebrow">Edição inaugural</span>
+                </div>
+                <h2 className="font-serif text-4xl font-medium tracking-tight md:text-[42px]">
+                  Artigos recentes
+                </h2>
               </div>
-              <h2 className="font-serif text-4xl font-medium tracking-tight md:text-[42px]">
-                Artigos recentes
-              </h2>
+              <Link href="/artigos" className="btn-text">Arquivo completo →</Link>
             </div>
-            <Link href="/artigos" className="btn-text">Arquivo completo →</Link>
+            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+              {articles.map((a: any) => {
+                const heroSrc = a.heroImage
+                  ? urlForImage(a.heroImage).width(600).height(450).url()
+                  : null;
+                const meta = [
+                  a.readingTime ? `${a.readingTime} min` : null,
+                  a.publishedAt
+                    ? new Date(a.publishedAt).toLocaleDateString("pt-BR", {
+                        month: "long",
+                        year: "numeric",
+                      })
+                    : null,
+                ]
+                  .filter(Boolean)
+                  .join(" · ");
+
+                return (
+                  <Link
+                    key={a._id}
+                    href={`/artigos/${a.slug}`}
+                    className="group"
+                  >
+                    <article>
+                      <div className="relative mb-6 aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#1a1815] to-[#2a2520]">
+                        {heroSrc ? (
+                          <Image
+                            src={heroSrc}
+                            alt={a.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 border border-gold/60" />
+                        )}
+                      </div>
+                      <div className="mb-3.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gold">
+                        {a.pillar?.title ?? "Artigo"}
+                      </div>
+                      <h3 className="mb-3.5 font-serif text-[22px] font-medium leading-snug transition-colors group-hover:text-gold-soft md:text-[28px]">
+                        {a.title}
+                      </h3>
+                      {a.excerpt && (
+                        <p className="mb-4 text-sm leading-relaxed text-sepia line-clamp-3">
+                          {a.excerpt}
+                        </p>
+                      )}
+                      {meta && (
+                        <div className="text-[11px] uppercase tracking-[0.15em] text-sepia">
+                          {meta}
+                        </div>
+                      )}
+                    </article>
+                  </Link>
+                );
+              })}
+            </div>
           </div>
-          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-            {ARTICLES.map((a) => (
-              <article key={a.title} className="group cursor-pointer">
-                <div className="relative mb-6 aspect-[4/3] overflow-hidden bg-gradient-to-br from-[#1a1815] to-[#2a2520]">
-                  <div className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2 border border-gold/60" />
-                </div>
-                <div className="mb-3.5 text-[10px] font-medium uppercase tracking-[0.2em] text-gold">
-                  {a.tag}
-                </div>
-                <h3 className="mb-3.5 font-serif text-[22px] font-medium leading-snug transition-colors group-hover:text-gold-soft md:text-[28px]">
-                  {a.title}
-                </h3>
-                <p className="mb-4 text-sm leading-relaxed text-sepia">{a.excerpt}</p>
-                <div className="text-[11px] uppercase tracking-[0.15em] text-sepia">
-                  {a.meta}
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* REPORT CTA */}
       <section className="bg-cream px-8 py-32 text-ink-elevated">
@@ -278,7 +314,7 @@ export default function HomePage() {
                 Setenta e duas páginas de pesquisa primária, dados de mercado
                 e análise estratégica sobre a categoria que está sendo
                 construída no varejo premium brasileiro. Distribuição
-                restrita a lojistas, gestoras e estrategistas.
+                restrita a lojistas, gestores e estrategistas.
               </p>
               <form
                 action="/api/leads"
