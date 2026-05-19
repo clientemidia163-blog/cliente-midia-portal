@@ -26,7 +26,8 @@ export function Footer() {
               { label: "Diagnóstico", href: "/diagnostico" },
               { label: "Categoria", href: "/categoria" },
               { label: "Pesquisa", href: "/pesquisa" },
-              { label: "Movimento", href: "/movimento" }
+              { label: "Movimento", href: "/movimento" },
+              { label: "Método", href: "/metodo" }
             ]}
           />
 
