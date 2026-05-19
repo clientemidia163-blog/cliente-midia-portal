@@ -56,9 +56,11 @@ export interface PublishResult {
 
 export async function publishDraft(
   article: GeneratedArticle & { slug: string },
-  imageBuffer: Buffer | null
+  imageBuffer: Buffer | null,
+  secondaryImageBuffer?: Buffer | null
 ): Promise<PublishResult> {
   let heroImage: object | undefined;
+  let secondaryAssetId: string | undefined;
 
   if (imageBuffer) {
     try {
@@ -76,7 +78,32 @@ export async function publishDraft(
     }
   }
 
+  if (secondaryImageBuffer) {
+    try {
+      const asset = await writeClient.assets.upload("image", secondaryImageBuffer, {
+        filename: `${article.slug}-secondary.jpg`,
+        contentType: "image/jpeg",
+      });
+      secondaryAssetId = asset._id;
+    } catch {
+      // imagem secundária falhou — ignora
+    }
+  }
+
   const draftId = `drafts.article.${article.slug}-${Date.now()}`;
+
+  const bodyBlocks: object[] = sectionsToBlocks(article.sections);
+
+  // Insere a imagem secundária no meio do corpo do artigo
+  if (secondaryAssetId && bodyBlocks.length > 6) {
+    const midIndex = Math.floor(bodyBlocks.length / 2);
+    bodyBlocks.splice(midIndex, 0, {
+      _type: "image",
+      _key: key(),
+      asset: { _type: "reference", _ref: secondaryAssetId },
+      alt: `Ilustração — ${article.title}`,
+    });
+  }
 
   await writeClient.createIfNotExists({
     _id: draftId,
@@ -94,7 +121,7 @@ export async function publishDraft(
       _ref: `pillar.${article.pillarSlug}`,
     },
     ...(heroImage ? { heroImage } : {}),
-    body: sectionsToBlocks(article.sections),
+    body: bodyBlocks,
   });
 
   const studioUrl = `https://clientemidia.com.br/studio/desk/article;${draftId}`;

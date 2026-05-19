@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { researchTopic } from "@/lib/pipeline/research";
 import { writeArticle } from "@/lib/pipeline/writer";
-import { generateCoverImage } from "@/lib/pipeline/image-gen";
+import { generateArticleImages } from "@/lib/pipeline/image-gen";
 import { publishDraft } from "@/lib/pipeline/publisher";
 
 export const runtime = "nodejs";
@@ -46,17 +46,30 @@ async function handle(req: Request) {
     // 2. Redação
     const article = await writeArticle(pillarSlug, research);
 
-    // 3. Imagem (não bloqueia o pipeline se falhar)
-    let imageBuffer: Buffer | null = null;
+    // 3. Imagens baseadas no conteúdo do artigo
+    const keyThemes = article.sections
+      .filter((s) => s.type === "h2")
+      .map((s) => s.text ?? "")
+      .filter(Boolean);
+
+    let heroBuffer: Buffer | null = null;
+    let secondaryBuffer: Buffer | null = null;
     try {
-      const img = await generateCoverImage(article.title, pillarSlug);
-      imageBuffer = img.buffer;
+      const imgs = await generateArticleImages(
+        article.title,
+        pillarSlug,
+        article.excerpt,
+        keyThemes,
+        article.sections.length
+      );
+      heroBuffer = imgs.hero.buffer;
+      secondaryBuffer = imgs.secondary?.buffer ?? null;
     } catch (imgErr) {
       console.error("[pipeline] imagem falhou:", imgErr);
     }
 
     // 4. Publicação como rascunho
-    const result = await publishDraft(article, imageBuffer);
+    const result = await publishDraft(article, heroBuffer, secondaryBuffer);
 
     return NextResponse.json({
       ok: true,
