@@ -8,11 +8,13 @@ Restrictions: no text overlay, no logos, no watermarks, no cheesy stock photo lo
 async function buildAndGenerate(visualConcept: string): Promise<{ url: string; buffer: Buffer }> {
   const prompt = `${visualConcept}${STYLE_SUFFIX}`;
 
-  const result = await fal.subscribe("fal-ai/flux-pro/v1.1", {
+  const result = await fal.subscribe("openai/gpt-image-2", {
     input: {
       prompt,
       image_size: "landscape_16_9",
+      quality: "medium",
       num_images: 1,
+      output_format: "jpeg",
     },
   });
 
