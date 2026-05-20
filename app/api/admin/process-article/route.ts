@@ -199,13 +199,11 @@ RETORNE APENAS UM JSON VÁLIDO:
 
 async function generateImage(visualConcept: string): Promise<Buffer | null> {
   try {
-    const result = await fal.subscribe("fal-ai/flux/dev", {
+    const result = await fal.subscribe("fal-ai/flux-pro/v1.1", {
       input: {
         prompt: `${visualConcept}${STYLE_SUFFIX}`,
         image_size: "landscape_16_9",
-        num_inference_steps: 25,
         num_images: 1,
-        enable_safety_checker: true,
       },
     });
 
@@ -327,7 +325,6 @@ export async function POST(req: NextRequest) {
 
     let newBody: object[] | null = null;
     let visualConcept = "";
-    let secondaryVisualConcept = "";
 
     // 2. Expand thin articles with Groq
     if (isThin) {
@@ -341,7 +338,6 @@ export async function POST(req: NextRequest) {
       });
       newBody = sectionsToBlocks(expanded.sections);
       visualConcept = expanded.visualConcept;
-      secondaryVisualConcept = expanded.secondaryVisualConcept;
     } else {
       // 3. Generate visual concept for complete articles
       const concepts = await generateVisualConcept(
@@ -350,7 +346,6 @@ export async function POST(req: NextRequest) {
         pillarSlug
       );
       visualConcept = concepts.visualConcept;
-      secondaryVisualConcept = concepts.secondaryVisualConcept;
     }
 
     // 4. Generate cover image (skip if already has one)

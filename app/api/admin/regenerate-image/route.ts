@@ -96,13 +96,11 @@ RETORNE APENAS UM JSON VÁLIDO:
 
 async function generateImage(visualConcept: string): Promise<Buffer | null> {
   try {
-    const result = await fal.subscribe("fal-ai/flux/dev", {
+    const result = await fal.subscribe("fal-ai/flux-pro/v1.1", {
       input: {
         prompt: `${visualConcept}${STYLE_SUFFIX}`,
         image_size: "landscape_16_9",
-        num_inference_steps: 25,
         num_images: 1,
-        enable_safety_checker: true,
       },
     });
 

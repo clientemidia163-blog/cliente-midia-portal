@@ -8,13 +8,11 @@ Restrictions: no text overlay, no logos, no watermarks, no cheesy stock photo lo
 async function buildAndGenerate(visualConcept: string): Promise<{ url: string; buffer: Buffer }> {
   const prompt = `${visualConcept}${STYLE_SUFFIX}`;
 
-  const result = await fal.subscribe("fal-ai/flux/dev", {
+  const result = await fal.subscribe("fal-ai/flux-pro/v1.1", {
     input: {
       prompt,
       image_size: "landscape_16_9",
-      num_inference_steps: 25,
       num_images: 1,
-      enable_safety_checker: true,
     },
   });
 
